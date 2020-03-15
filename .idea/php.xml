@@ -116,6 +116,10 @@
       <path value="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge" />
       <path value="$PROJECT_DIR$/vendor/joselfonseca/lighthouse-graphql-passport-auth" />
       <path value="$PROJECT_DIR$/vendor/mll-lab/laravel-graphql-playground" />
+      <path value="$PROJECT_DIR$/vendor/mpociot/laravel-test-factory-helper" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

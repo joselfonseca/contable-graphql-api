@@ -10,6 +10,11 @@ class Account extends Model
 {
     protected $fillable = ['user_id', 'name', 'balance'];
 
+    protected $casts = [
+        'user_id' => 'Int',
+        'balance' => 'Float'
+    ];
+
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);

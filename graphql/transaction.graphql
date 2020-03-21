@@ -11,8 +11,15 @@ type Transaction {
 input CreateTransactionInput {
     account_id: ID!
     description: String!
-    amount: Float!
+    amount: Float! @rules(apply: ["gte:0"])
     type: TransactionType!
+}
+
+input UpdateTransactionInput {
+    account_id: ID
+    description: String
+    amount: Float @rules(apply: ["gte:0"])
+    type: TransactionType
 }
 
 enum TransactionType {

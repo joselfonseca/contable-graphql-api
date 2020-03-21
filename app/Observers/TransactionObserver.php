@@ -2,18 +2,40 @@
 
 namespace App\Observers;
 
+use App\Account;
+use App\CalculateAccountBalance;
 use App\Transaction;
 
 class TransactionObserver
 {
+
+    public $calculator;
+
+    public function __construct(CalculateAccountBalance $calculator)
+    {
+        $this->calculator = $calculator;
+    }
+
     public function created(Transaction $transaction)
     {
-        $account = $transaction->account;
-        if ($transaction->type === "INCOME") {
-            $account->balance = $account->balance + $transaction->amount;
-            return $account->save();
-        }
-        $account->balance = $account->balance - $transaction->amount;
+        return $this->calculator->calculateNewAccountBalance($transaction);
+    }
+
+    public function updating(Transaction $transaction)
+    {
+        return $this->calculator->setOldTransaction(Transaction::find($transaction->id));
+    }
+
+    public function updated(Transaction $transaction)
+    {
+        $this->calculator->setAccountBalanceFromOldTransaction($transaction);
+        return $this->calculator->calculateNewAccountBalance($transaction);
+    }
+
+    public function deleted(Transaction $transaction)
+    {
+        $this->calculator->setOldTransaction($transaction);
+        $account = $this->calculator->setAccountBalanceFromOldTransaction($transaction);
         return $account->save();
     }
 }

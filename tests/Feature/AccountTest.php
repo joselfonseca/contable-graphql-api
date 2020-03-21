@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Account;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -110,6 +111,77 @@ class AccountTest extends TestCase
         $this->assertDatabaseMissing('accounts', [
             'name' => 'wallet',
             'user_id' => $user->id
+        ]);
+    }
+
+    function test_it_can_update_an_account()
+    {
+        $user = factory(User::class)->create();
+        $account = factory(Account::class)->create([
+            'name' => 'Wallet',
+            'user_id' => $user->id,
+            'balance' => 100
+        ]);
+        Passport::actingAs($user);
+        $response = $this->graphQL('
+            mutation {
+                updateAccount(id: '.$account->id.', input: {
+                    name: "Savings"
+                }) {
+                    id
+                    name
+                    balance
+                }
+            }
+        ');
+        $response->assertJson([
+            'data' => [
+                'updateAccount' => [
+                    'id' => $account->id,
+                    'name' => 'Savings',
+                    'balance' => $account->balance
+                ]
+            ]
+        ]);
+        $this->assertDatabaseHas('accounts', [
+            'user_id' => $user->id,
+            'name' => 'Savings',
+            'id' => $account->id
+        ]);
+    }
+
+    function test_it_cant_update_an_account_when_not_owner()
+    {
+        $user = factory(User::class)->create();
+        $user2 = factory(User::class)->create();
+        $account = factory(Account::class)->create([
+            'name' => 'Wallet',
+            'user_id' => $user->id,
+            'balance' => 100
+        ]);
+        Passport::actingAs($user2);
+        $response = $this->graphQL('
+            mutation {
+                updateAccount(id: '.$account->id.', input: {
+                    name: "Savings"
+                }) {
+                    id
+                    name
+                    balance
+                }
+            }
+        ');
+        $response->assertJson([
+            'errors' => [
+                [
+                    'message' => "You are not authorized to access updateAccount"
+                ]
+            ]
+        ]);
+        $this->assertDatabaseMissing('accounts', [
+            'user_id' => $user->id,
+            'name' => 'Savings',
+            'id' => $account->id
         ]);
     }
 

@@ -11,6 +11,7 @@ class Account extends Model
     protected $fillable = ['user_id', 'name', 'balance'];
 
     protected $casts = [
+        'id' => 'Int',
         'user_id' => 'Int',
         'balance' => 'Float'
     ];
@@ -23,5 +24,13 @@ class Account extends Model
     public function transactions() : HasMany
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function scopeByLoggedInUser($query)
+    {
+        if(!request()->user()){
+            return $query;
+        }
+        return $query->where('user_id', request()->user()->id);
     }
 }

@@ -15,6 +15,7 @@
         "joselfonseca/lighthouse-graphql-passport-auth": "^4.1",
         "laravel/framework": "^7.0",
         "laravel/passport": "^8.4",
+        "laravel/telescope": "^3.2",
         "laravel/tinker": "^2.0",
         "mll-lab/laravel-graphql-playground": "^2.1",
         "nuwave/lighthouse": "^4.10"

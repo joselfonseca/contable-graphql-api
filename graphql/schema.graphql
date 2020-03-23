@@ -1,4 +1,6 @@
+#import account.graphql
 #import transaction.graphql
+#import user.graphql
 
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-01-01 13:00:00`."
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
@@ -6,42 +8,17 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
 "A date string with format `Y-m-d`, e.g. `2011-05-23`."
 scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
-type Mutation
-
 type Query {
     users: [User!]! @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
     me: User! @auth
+    accounts: [Account!] @paginate(scopes: ["byLoggedInUser"]) @guard(with: ["api"])
+    account(id: ID! @eq): Account! @find @can(ability: "view", find: "id") @guard(with: ["api"])
+    transactions: [Transaction!] @paginate(scopes: ["byLoggedInUser"]) @guard(with: ["api"])
+    transaction(id: ID! @eq): Transaction! @find @can(ability: "view", find: "id") @guard(with: ["api"])
 }
 
-type User {
-    id: ID!
-    name: String!
-    email: String!
-    created_at: DateTime!
-    updated_at: DateTime!
-    accounts: [Account] @hasMany
-}
-
-type Account {
-    id: ID!
-    name: String!
-    balance: Float!
-    created_at: DateTime!
-    updated_at: DateTime!
-    user: User! @belongsTo
-}
-
-input CreateAccountInput {
-    name: String!
-    balance: Float! @rules(apply: ["gte:0"])
-}
-
-input UpdateAccountInput {
-    name: String!
-}
-
-extend type Mutation {
+type Mutation {
     createAccount(input: CreateAccountInput! @spread): Account @create @inject(context: "user.id", name: "user_id") @guard(with: ["api"])
     updateAccount(id: ID!, input: UpdateAccountInput! @spread): Account @update @can(ability: "update", find: "id") @guard(with: ["api"])
     createTransaction(input: CreateTransactionInput! @spread): Transaction! @create @guard(with: ["api"])

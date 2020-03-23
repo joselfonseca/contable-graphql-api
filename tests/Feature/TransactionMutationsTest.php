@@ -6,11 +6,10 @@ use App\Account;
 use App\Transaction;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
-class TranactionTest extends TestCase
+class TransactionMutationsTest extends TestCase
 {
     use RefreshDatabase;
 

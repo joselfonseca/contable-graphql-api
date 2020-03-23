@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
-class AccountTest extends TestCase
+class AccountMutationsTest extends TestCase
 {
     use RefreshDatabase;
 

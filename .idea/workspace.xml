@@ -6,12 +6,19 @@
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Transaction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/TransactionFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/TransactionFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_14_233659_create_accounts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_14_233659_create_accounts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_15_195024_create_transactions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_15_195024_create_transactions_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphql/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/AccountTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/AccountMutationsTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/TranactionTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/TransactionMutationsTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql/transaction.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/transaction.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/TransactionMutationsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/TransactionMutationsTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,6 +157,9 @@
       <path value="$PROJECT_DIR$/vendor/laravel/telescope" />
       <path value="$PROJECT_DIR$/vendor/moontoast/math" />
       <path value="$PROJECT_DIR$/vendor/phpseclib/bcmath_compat" />
+      <path value="$PROJECT_DIR$/vendor/mll-lab/graphql-php-scalars" />
+      <path value="$PROJECT_DIR$/vendor/thecodingmachine/safe" />
+      <path value="$PROJECT_DIR$/vendor/spatie/regex" />
     </include_path>
   </component>
   <component name="ProjectId" id="1Z8h8017MuNP07uFsHZQmCyDFs4" />
@@ -198,6 +208,8 @@
       <workItem from="1584297276336" duration="5130000" />
       <workItem from="1584819272797" duration="8681000" />
       <workItem from="1584906201926" duration="4971000" />
+      <workItem from="1584999213145" duration="4743000" />
+      <workItem from="1585086406067" duration="3358000" />
     </task>
     <servers />
   </component>
@@ -209,10 +221,10 @@
       <screen x="1680" y="23" width="1920" height="1057" />
     </state>
     <state x="2322" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1584910295774" />
-    <state x="2513" y="311" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1584823565610">
+    <state x="2513" y="311" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585003547506">
       <screen x="1680" y="23" width="1920" height="1057" />
     </state>
-    <state x="2513" y="311" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1584823565610" />
+    <state x="2513" y="311" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1585003547506" />
     <state x="2537" y="160" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0" timestamp="1584826817238">
       <screen x="1680" y="23" width="1920" height="1057" />
     </state>
@@ -225,9 +237,9 @@
       <screen x="1680" y="23" width="1920" height="1057" />
     </state>
     <state x="2323" y="190" key="SettingsEditor/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1584819337888" />
-    <state x="2479" y="258" width="670" height="676" key="search.everywhere.popup" timestamp="1584910498883">
+    <state x="2479" y="258" width="670" height="676" key="search.everywhere.popup" timestamp="1585002496058">
       <screen x="1680" y="23" width="1920" height="1057" />
     </state>
-    <state x="2479" y="258" width="670" height="676" key="search.everywhere.popup/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1584910498883" />
+    <state x="2479" y="258" width="670" height="676" key="search.everywhere.popup/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1585002496058" />
   </component>
 </project>

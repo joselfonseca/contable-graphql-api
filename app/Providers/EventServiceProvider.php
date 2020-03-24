@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Listeners\CreateDefaultCategories;
 use App\Observers\TransactionObserver;
 use App\Transaction;
 use Illuminate\Auth\Events\Registered;
@@ -19,6 +20,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+            CreateDefaultCategories::class
         ],
     ];
 

@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Account;
+use App\Category;
 use App\Transaction;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -21,12 +22,16 @@ class TransactionMutationsTest extends TestCase
             'user_id' => $user->id,
             'balance' => 0
         ]);
+        $category = factory(Category::class)->create([
+            'user_id' => $user->id
+        ]);
         Passport::actingAs($user);
         //execute
         $response = $this->graphQL('
             mutation {
                 createTransaction(input: {
                     account_id: ' . $account->id . ',
+                    category_id: '.$category->id.',
                     type: INCOME,
                     description: "Income",
                     amount: 100
@@ -67,12 +72,16 @@ class TransactionMutationsTest extends TestCase
             'user_id' => $user->id,
             'balance' => 100
         ]);
+        $category = factory(Category::class)->create([
+            'user_id' => $user->id
+        ]);
         Passport::actingAs($user);
         //execute
         $response = $this->graphQL('
             mutation {
                 createTransaction(input: {
                     account_id: '.$account->id.',
+                    category_id: '.$category->id.',
                     type: EXPENSE,
                     description: "Expense",
                     amount: 50

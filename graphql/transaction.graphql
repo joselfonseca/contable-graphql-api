@@ -4,19 +4,22 @@ type Transaction {
     amount: Float!
     type: TransactionType!
     account: Account! @belongsTo
+    category: Category! @belongsTo
     created_at: DateTime!
     updated_at: DateTime!
 }
 
 input CreateTransactionInput {
-    account_id: ID!
+    account_id: ID! @rules(apply: ["exists:accounts,id"])
+    category_id: ID! @rules(apply: ["exists:categories,id"])
     description: String!
     amount: Float! @rules(apply: ["gte:0"])
     type: TransactionType!
 }
 
 input UpdateTransactionInput {
-    account_id: ID
+    account_id: ID @rules(apply: ["exists:accounts,id"])
+    category_id: ID @rules(apply: ["exists:categories,id"])
     description: String
     amount: Float @rules(apply: ["gte:0"])
     type: TransactionType

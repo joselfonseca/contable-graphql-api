@@ -1,19 +1,25 @@
 <template>
     <div class="w-full">
-        <h2 class="h2">Cuentas</h2>
+        <div class="flex justify-between">
+            <h2 class="h2">Cuentas</h2>
+            <button class="button-primary" @click="goToCreate">Crear</button>
+        </div>
         <simple-table :headings="headings" :data="accounts"></simple-table>
     </div>
 </template>
 
 <script>
     import SimpleTable from './../../components/tables/simple-table';
-    import gql from 'graphql-tag'
+
+    import ACCOUNTS from '../../graphql/accounts/accounts.graphql';
+
     export default {
         data() {
             return {
                 headings: [
                     'ID',
-                    'Nombre'
+                    'Nombre',
+                    'Saldo actual'
                 ],
                 accounts: []
             }
@@ -27,21 +33,22 @@
         methods: {
             async getAccounts() {
                 const response = await this.$apollo.query({
-                    query: gql(`{
-                        accounts(first: 20) {
-                            data {
-                                id
-                                name
-                            }
-                        }
-                    }`)
+                    query: ACCOUNTS,
+                    variables: {
+                        first: 20,
+                        page: 1
+                    }
                 });
                 this.accounts = response.data.accounts.data.map(item => {
                     return {
                         id: item.id,
-                        name: item.name
+                        name: item.name,
+                        balance: item.balance
                     };
                 });
+            },
+            goToCreate() {
+                this.$router.push('/accounts/create');
             }
         }
     }

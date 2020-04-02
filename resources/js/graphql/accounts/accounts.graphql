@@ -1,0 +1,9 @@
+query accounts($first: Int!, $page: Int) {
+    accounts(first: $first, page: $page) {
+        data {
+            id
+            name
+            balance
+        }
+    }
+}

@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a21db60-81d1-47ed-ab4d-de7ee8fd780d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/contable.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/contable.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/lighthouse.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/lighthouse.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/schema.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/accounts/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/accounts/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
@@ -32,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue Single File Component" />
         <option value="CSS File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -186,6 +179,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/graphql/accounts" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
@@ -221,7 +219,8 @@
       <workItem from="1584999213145" duration="4743000" />
       <workItem from="1585086406067" duration="4470000" />
       <workItem from="1585172972925" duration="4612000" />
-      <workItem from="1585346594932" duration="3398000" />
+      <workItem from="1585346594932" duration="3658000" />
+      <workItem from="1585777334327" duration="3948000" />
     </task>
     <servers />
   </component>
@@ -245,12 +244,13 @@
       <screen x="1680" y="23" width="1920" height="1057" />
     </state>
     <state x="2591" y="474" key="ReplaceDuplicatesPrompt/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1584826823644" />
-    <state x="-1277" y="233" key="SettingsEditor" timestamp="1585346606888">
-      <screen x="-1920" y="66" width="1920" height="1057" />
+    <state x="2323" y="222" key="SettingsEditor" timestamp="1585779742877">
+      <screen x="1680" y="55" width="1920" height="1057" />
     </state>
     <state x="-1277" y="233" key="SettingsEditor/-1920.66.1920.1057/0.23.1680.980@-1920.66.1920.1057" timestamp="1585346606888" />
     <state x="563" y="178" key="SettingsEditor/1680.23.1920.1057/0.23.1680.980@0.23.1680.980" timestamp="1585173711735" />
     <state x="2323" y="190" key="SettingsEditor/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1584819337888" />
+    <state x="2323" y="222" key="SettingsEditor/1680.55.1920.1057/0.23.1680.980@1680.55.1920.1057" timestamp="1585779742877" />
     <state x="-1121" y="301" width="670" height="676" key="search.everywhere.popup" timestamp="1585348860955">
       <screen x="-1920" y="66" width="1920" height="1057" />
     </state>

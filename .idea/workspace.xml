@@ -3,13 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="9a21db60-81d1-47ed-ab4d-de7ee8fd780d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/account.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/account.graphql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/apollo/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/apollo/client.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/tables/simple-table.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/tables/simple-table.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/views/accounts/create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/accounts/create.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/views/accounts/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/accounts/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,6 +224,7 @@
       <workItem from="1585777334327" duration="3948000" />
       <workItem from="1586546236597" duration="434000" />
       <workItem from="1586546931331" duration="4005000" />
+      <workItem from="1586640709642" duration="3562000" />
     </task>
     <servers />
   </component>

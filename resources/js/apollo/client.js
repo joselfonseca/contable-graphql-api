@@ -7,7 +7,12 @@ const apolloClient = new ApolloClient({
         'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
         'X-Requested-With' : 'XMLHttpRequest'
     },
-    onError: ErrorHandler
+    onError: ErrorHandler,
+    defaultOptions: {
+        watchQuery: {
+            fetchPolicy: 'network-only',
+        },
+    },
 });
 
 export default apolloClient;

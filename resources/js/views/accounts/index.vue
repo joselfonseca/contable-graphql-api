@@ -4,13 +4,12 @@
             <h2 class="h2">Cuentas</h2>
             <button class="button-primary" @click="goToCreate">Crear</button>
         </div>
-        <simple-table :headings="headings" :data="accounts"></simple-table>
+        <simple-table :headings="headings" :data="accounts" :loading="loading" @editRecord="editRecord"></simple-table>
     </div>
 </template>
 
 <script>
     import SimpleTable from './../../components/tables/simple-table';
-
     import ACCOUNTS from '../../graphql/accounts/accounts.graphql';
 
     export default {
@@ -21,7 +20,8 @@
                     'Nombre',
                     'Saldo actual'
                 ],
-                accounts: []
+                accounts: [],
+                loading: true
             }
         },
         components: {
@@ -46,9 +46,13 @@
                         balance: item.balance
                     };
                 });
+                this.loading = this.$apollo.loading;
             },
             goToCreate() {
                 this.$router.push('/accounts/create');
+            },
+            editRecord(record) {
+                this.$router.push(`/accounts/${record.id}/edit`);
             }
         }
     }

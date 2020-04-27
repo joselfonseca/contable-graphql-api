@@ -8,11 +8,11 @@
                 </tr>
             </thead>
             <tbody class="border b-2">
-                <tr v-if="!loading" v-for="item in data">
+                <tr v-if="!loading" v-for="item in data" :key="item.id">
                     <td class="p-2 border border-gray-400" v-for="column in item">{{ column }}</td>
                     <td class="p-2 border border-gray-400 w-64 text-center">
                         <button @click="editRecord(item)" class="button-primary">Editar</button>
-                        <button class="button-danger">Eliminar</button>
+                        <button @click="deleteRecord(item)" class="button-danger">Eliminar</button>
                     </td>
                 </tr>
                 <tr>
@@ -45,6 +45,9 @@
         methods: {
             editRecord(record) {
                 this.$emit('editRecord', record);
+            },
+            deleteRecord(record) {
+                this.$emit('deleteRecord', record);
             }
         }
     }

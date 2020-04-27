@@ -127,6 +127,7 @@
       <path value="$PROJECT_DIR$/vendor/thecodingmachine/safe" />
       <path value="$PROJECT_DIR$/vendor/spatie/regex" />
       <path value="$PROJECT_DIR$/vendor/laravel-frontend-presets/tailwindcss" />
+      <path value="$PROJECT_DIR$/vendor/ashallendesign/laravel-exchange-rates" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

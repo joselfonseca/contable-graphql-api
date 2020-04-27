@@ -1,0 +1,13 @@
+type ExchangeConversion {
+    from: String!
+    to: String!
+    value: Float!
+    result: Float!
+    date: String! @field(resolver: "App\\GraphQL\\Queries\\DateResolver")
+}
+
+input ExchageConversionInput {
+    from: String!
+    to: String!
+    value: Float!
+}

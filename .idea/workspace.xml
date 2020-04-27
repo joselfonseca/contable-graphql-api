@@ -2,15 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a21db60-81d1-47ed-ab4d-de7ee8fd780d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/contable.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/contable.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/schema.graphql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/apollo/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/apollo/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/tables/simple-table.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/tables/simple-table.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/accounts/create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/accounts/create.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/views/accounts/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/accounts/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/AccountMutationsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/AccountMutationsTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,9 +24,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -161,6 +164,7 @@
       <path value="$PROJECT_DIR$/vendor/thecodingmachine/safe" />
       <path value="$PROJECT_DIR$/vendor/spatie/regex" />
       <path value="$PROJECT_DIR$/vendor/laravel-frontend-presets/tailwindcss" />
+      <path value="$PROJECT_DIR$/vendor/ashallendesign/laravel-exchange-rates" />
     </include_path>
   </component>
   <component name="ProjectId" id="1Z8h8017MuNP07uFsHZQmCyDFs4" />
@@ -169,7 +173,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -190,18 +193,6 @@
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -225,36 +216,43 @@
       <workItem from="1586546236597" duration="434000" />
       <workItem from="1586546931331" duration="4005000" />
       <workItem from="1586640709642" duration="3562000" />
+      <workItem from="1586720867513" duration="4456000" />
+      <workItem from="1587946038922" duration="2638000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2322" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1584910295774">
       <screen x="1680" y="23" width="1920" height="1057" />
     </state>
     <state x="2322" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1584910295774" />
-    <state x="2513" y="311" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585003547506">
-      <screen x="1680" y="23" width="1920" height="1057" />
+    <state x="2513" y="343" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1587948920340">
+      <screen x="1680" y="55" width="1920" height="1057" />
     </state>
     <state x="2513" y="311" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1585003547506" />
+    <state x="2513" y="343" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1680.55.1920.1057/0.23.1680.980@1680.55.1920.1057" timestamp="1587948920340" />
     <state x="2537" y="160" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0" timestamp="1584826817238">
       <screen x="1680" y="23" width="1920" height="1057" />
     </state>
     <state x="2537" y="160" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method0/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1584826817238" />
+    <state x="2469" y="316" key="NewPhpClassDialog" timestamp="1587948909657">
+      <screen x="1680" y="55" width="1920" height="1057" />
+    </state>
+    <state x="2469" y="316" key="NewPhpClassDialog/1680.55.1920.1057/0.23.1680.980@1680.55.1920.1057" timestamp="1587948909657" />
     <state x="2591" y="474" key="ReplaceDuplicatesPrompt" timestamp="1584826823644">
       <screen x="1680" y="23" width="1920" height="1057" />
     </state>
     <state x="2591" y="474" key="ReplaceDuplicatesPrompt/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1584826823644" />
-    <state x="2323" y="222" key="SettingsEditor" timestamp="1586546245623">
+    <state x="2323" y="222" key="SettingsEditor" timestamp="1587946046557">
       <screen x="1680" y="55" width="1920" height="1057" />
     </state>
     <state x="-1277" y="233" key="SettingsEditor/-1920.66.1920.1057/0.23.1680.980@-1920.66.1920.1057" timestamp="1585346606888" />
     <state x="563" y="178" key="SettingsEditor/1680.23.1920.1057/0.23.1680.980@0.23.1680.980" timestamp="1585173711735" />
     <state x="2323" y="190" key="SettingsEditor/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1584819337888" />
-    <state x="2323" y="222" key="SettingsEditor/1680.55.1920.1057/0.23.1680.980@1680.55.1920.1057" timestamp="1586546245623" />
+    <state x="2323" y="222" key="SettingsEditor/1680.55.1920.1057/0.23.1680.980@1680.55.1920.1057" timestamp="1587946046557" />
     <state x="-1121" y="301" width="670" height="676" key="search.everywhere.popup" timestamp="1585348860955">
       <screen x="-1920" y="66" width="1920" height="1057" />
     </state>

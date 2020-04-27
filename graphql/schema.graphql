@@ -2,6 +2,7 @@
 #import transaction.graphql
 #import category.graphql
 #import user.graphql
+#import exchange-rates.graphql
 
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-01-01 13:00:00`."
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
@@ -17,11 +18,13 @@ type Query {
     transaction(id: ID! @eq): Transaction! @find @can(ability: "view", find: "id") @guard(with: ["api", "web"])
     categories: [Category!] @paginate(scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
     category(id: ID! @eq): Category! @find @can(ability: "view", find: "id") @guard(with: ["api", "web"])
+    exchangeConversion(input: ExchageConversionInput! @spread): ExchangeConversion @guard(with: ["api", "web"])
 }
 
 type Mutation {
     createAccount(input: CreateAccountInput! @spread): Account @create @inject(context: "user.id", name: "user_id") @guard(with: ["api", "web"])
     updateAccount(id: ID!, input: UpdateAccountInput! @spread): Account @update @can(ability: "update", find: "id") @guard(with: ["api", "web"])
+    deleteAccount(id: ID!): Account @delete @can(ability: "delete", find: "id") @guard(with: ["api", "web"])
     createTransaction(input: CreateTransactionInput! @spread): Transaction! @create @guard(with: ["api", "web"])
     updateTransaction(id: ID!, input: UpdateTransactionInput! @spread): Transaction! @update @can(ability: "update", find: "id") @guard(with: ["api", "web"])
     deleteTransaction(id: ID!): Transaction! @delete @can(ability: "delete", find: "id") @guard(with: ["api", "web"])

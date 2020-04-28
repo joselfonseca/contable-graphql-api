@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a21db60-81d1-47ed-ab4d-de7ee8fd780d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/contable.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/contable.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/apollo/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/apollo/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/tables/simple-table.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/tables/simple-table.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/accounts/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/accounts/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/AccountMutationsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/AccountMutationsTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,12 +167,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/graphql/categories" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/graphql/categories" />
+      <recent name="$PROJECT_DIR$/resources/js/views/categories" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/graphql/accounts" />
     </key>
@@ -217,7 +210,9 @@
       <workItem from="1586546931331" duration="4005000" />
       <workItem from="1586640709642" duration="3562000" />
       <workItem from="1586720867513" duration="4456000" />
-      <workItem from="1587946038922" duration="2638000" />
+      <workItem from="1587946038922" duration="2905000" />
+      <workItem from="1588002735008" duration="51000" />
+      <workItem from="1588109721694" duration="3176000" />
     </task>
     <servers />
   </component>
@@ -246,13 +241,13 @@
       <screen x="1680" y="23" width="1920" height="1057" />
     </state>
     <state x="2591" y="474" key="ReplaceDuplicatesPrompt/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1584826823644" />
-    <state x="2323" y="222" key="SettingsEditor" timestamp="1587946046557">
+    <state x="2323" y="222" key="SettingsEditor" timestamp="1588109744469">
       <screen x="1680" y="55" width="1920" height="1057" />
     </state>
     <state x="-1277" y="233" key="SettingsEditor/-1920.66.1920.1057/0.23.1680.980@-1920.66.1920.1057" timestamp="1585346606888" />
     <state x="563" y="178" key="SettingsEditor/1680.23.1920.1057/0.23.1680.980@0.23.1680.980" timestamp="1585173711735" />
     <state x="2323" y="190" key="SettingsEditor/1680.23.1920.1057/0.23.1680.980@1680.23.1920.1057" timestamp="1584819337888" />
-    <state x="2323" y="222" key="SettingsEditor/1680.55.1920.1057/0.23.1680.980@1680.55.1920.1057" timestamp="1587946046557" />
+    <state x="2323" y="222" key="SettingsEditor/1680.55.1920.1057/0.23.1680.980@1680.55.1920.1057" timestamp="1588109744469" />
     <state x="-1121" y="301" width="670" height="676" key="search.everywhere.popup" timestamp="1585348860955">
       <screen x="-1920" y="66" width="1920" height="1057" />
     </state>

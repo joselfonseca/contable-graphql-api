@@ -17,7 +17,7 @@ class UpdateSocialProviderUsersTable extends Migration
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
 
-            if (!Schema::hasColumn('users', 'avatar')) {
+            if (! Schema::hasColumn('users', 'avatar')) {
                 $table->string('avatar')->nullable();
             }
         });

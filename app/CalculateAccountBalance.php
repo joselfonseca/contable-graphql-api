@@ -4,7 +4,6 @@ namespace App;
 
 class CalculateAccountBalance
 {
-
     public $old_transaction;
 
     public function setOldTransaction(Transaction $transaction)
@@ -15,7 +14,7 @@ class CalculateAccountBalance
     public function calculateNewAccountBalance($transaction)
     {
         $account = $transaction->account;
-        if ($transaction->type === "INCOME") {
+        if ($transaction->type === 'INCOME') {
             $account->balance = $account->balance + $transaction->amount;
             return $account->save();
         }
@@ -26,7 +25,7 @@ class CalculateAccountBalance
     public function setAccountBalanceFromOldTransaction(Transaction $transaction) : Account
     {
         $account = $transaction->account;
-        if ($this->old_transaction->type === "INCOME") {
+        if ($this->old_transaction->type === 'INCOME') {
             $account->balance = $account->balance - $this->old_transaction->amount;
             return $account;
         }

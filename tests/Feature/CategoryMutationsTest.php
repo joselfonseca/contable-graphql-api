@@ -5,16 +5,14 @@ namespace Tests\Feature;
 use App\Category;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class CategoryMutationsTest extends TestCase
 {
-
     use RefreshDatabase;
 
-    function test_it_can_create_a_category()
+    public function test_it_can_create_a_category()
     {
         //prepare
         $user = factory(User::class)->create();
@@ -45,7 +43,7 @@ class CategoryMutationsTest extends TestCase
         ]);
     }
 
-    function test_it_can_update_a_category()
+    public function test_it_can_update_a_category()
     {
         //prepare
         $user = factory(User::class)->create();
@@ -79,7 +77,7 @@ class CategoryMutationsTest extends TestCase
         ]);
     }
 
-    function test_it_cant_update_a_category_when_not_owner()
+    public function test_it_cant_update_a_category_when_not_owner()
     {
         $user = factory(User::class)->create();
         $user2 = factory(User::class)->create();
@@ -100,7 +98,7 @@ class CategoryMutationsTest extends TestCase
         $response->assertJson([
             'errors' => [
                 [
-                    'message' => "You are not authorized to access updateCategory"
+                    'message' => 'You are not authorized to access updateCategory'
                 ]
             ]
         ]);
@@ -111,7 +109,7 @@ class CategoryMutationsTest extends TestCase
         ]);
     }
 
-    function test_it_can_delete_a_category()
+    public function test_it_can_delete_a_category()
     {
         $user = factory(User::class)->create();
         $category = factory(Category::class)->create([
@@ -136,7 +134,7 @@ class CategoryMutationsTest extends TestCase
         $this->assertNotNull($category->fresh()->deleted_at);
     }
 
-    function test_it_cant_delete_a_category_when_not_owner()
+    public function test_it_cant_delete_a_category_when_not_owner()
     {
         $user = factory(User::class)->create();
         $user2 = factory(User::class)->create();
@@ -155,11 +153,10 @@ class CategoryMutationsTest extends TestCase
         $response->assertJson([
             'errors' => [
                 [
-                    'message' => "You are not authorized to access deleteCategory"
+                    'message' => 'You are not authorized to access deleteCategory'
                 ]
             ]
         ]);
         $this->assertNull($category->fresh()->deleted_at);
     }
-
 }

@@ -2,11 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Account;
 use App\Category;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
@@ -14,7 +12,7 @@ class CategoryQueriesTest extends TestCase
 {
     use RefreshDatabase;
 
-    function test_it_queries_categories()
+    public function test_it_queries_categories()
     {
         $user = factory(User::class)->create();
         factory(Category::class, 3)->create([
@@ -46,7 +44,7 @@ class CategoryQueriesTest extends TestCase
         ]);
     }
 
-    function test_it_queries_an_account()
+    public function test_it_queries_an_account()
     {
         $user = factory(User::class)->create();
         $category = factory(Category::class, 3)->create([
@@ -72,7 +70,7 @@ class CategoryQueriesTest extends TestCase
         ]);
     }
 
-    function test_it_cant_query_an_account_not_owned()
+    public function test_it_cant_query_an_account_not_owned()
     {
         $user = factory(User::class)->create();
         $category = factory(Category::class)->create();

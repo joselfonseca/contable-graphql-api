@@ -6,16 +6,14 @@ use App\Account;
 use App\Transaction;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class TransactionQueriesTest extends TestCase
 {
-
     use RefreshDatabase;
 
-    function test_it_queries_transactions()
+    public function test_it_queries_transactions()
     {
         // prepare
         $user = factory(User::class)->create();
@@ -55,7 +53,7 @@ class TransactionQueriesTest extends TestCase
         ]);
     }
 
-    function test_it_queries_logged_in_user_transactions()
+    public function test_it_queries_logged_in_user_transactions()
     {
         // prepare
         $user = factory(User::class)->create();
@@ -99,7 +97,7 @@ class TransactionQueriesTest extends TestCase
         ]);
     }
 
-    function test_it_queries_a_transaction()
+    public function test_it_queries_a_transaction()
     {
         // prepare
         $user = factory(User::class)->create();
@@ -139,7 +137,7 @@ class TransactionQueriesTest extends TestCase
         ]);
     }
 
-    function test_it_cant_query_a_transaction_where_not_owner()
+    public function test_it_cant_query_a_transaction_where_not_owner()
     {
         // prepare
         $user = factory(User::class)->create();

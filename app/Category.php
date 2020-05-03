@@ -24,10 +24,9 @@ class Category extends Model
 
     public function scopeByLoggedInUser($query)
     {
-        if(!request()->user()){
+        if (! request()->user()) {
             return $query;
         }
         return $query->where('user_id', request()->user()->id);
     }
-
 }

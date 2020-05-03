@@ -4,18 +4,15 @@ namespace Tests\Feature;
 
 use App\Account;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class AccountQueriesTest extends TestCase
 {
-
     use RefreshDatabase;
 
-    function test_it_queries_accounts()
+    public function test_it_queries_accounts()
     {
         $user = factory(User::class)->create();
         factory(Account::class, 3)->create([
@@ -47,7 +44,7 @@ class AccountQueriesTest extends TestCase
         ]);
     }
 
-    function test_it_queries_an_account()
+    public function test_it_queries_an_account()
     {
         $user = factory(User::class)->create();
         $accounts = factory(Account::class, 3)->create([
@@ -73,7 +70,7 @@ class AccountQueriesTest extends TestCase
         ]);
     }
 
-    function test_it_cant_query_an_account_not_owned()
+    public function test_it_cant_query_an_account_not_owned()
     {
         $user = factory(User::class)->create();
         factory(Account::class, 3)->create([

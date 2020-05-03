@@ -6,7 +6,6 @@ use Illuminate\Auth\Events\Registered;
 
 class CreateDefaultCategories
 {
-
     public $categories = [
         'Salario',
         'Arriendo',
@@ -25,7 +24,7 @@ class CreateDefaultCategories
     public function handle(Registered $event)
     {
         $user = $event->user;
-        collect($this->categories)->each(function($category) use ($user) {
+        collect($this->categories)->each(function ($category) use ($user) {
             $user->categories()->create([
                 'name' => $category
             ]);

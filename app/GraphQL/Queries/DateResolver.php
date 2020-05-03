@@ -1,12 +1,8 @@
 <?php
 
-
 namespace App\GraphQL\Queries;
 
-
-use AshAllenDesign\LaravelExchangeRates\Classes\ExchangeRate;
 use GraphQL\Type\Definition\ResolveInfo;
-use Illuminate\Support\Carbon;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class DateResolver

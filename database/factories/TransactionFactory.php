@@ -16,12 +16,12 @@ $factory->define(App\Transaction::class, function (Faker $faker) {
 
 $factory->state(App\Transaction::class, 'income', function (Faker $faker) {
     return [
-        'type' => "INCOME"
+        'type' => 'INCOME'
     ];
 });
 
 $factory->state(App\Transaction::class, 'expense', function (Faker $faker) {
     return [
-        'type' => "EXPENSE"
+        'type' => 'EXPENSE'
     ];
 });

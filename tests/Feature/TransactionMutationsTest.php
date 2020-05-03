@@ -14,7 +14,7 @@ class TransactionMutationsTest extends TestCase
 {
     use RefreshDatabase;
 
-    function test_it_creates_transaction_and_updates_balance()
+    public function test_it_creates_transaction_and_updates_balance()
     {
         // prepare
         $user = factory(User::class)->create();
@@ -30,7 +30,7 @@ class TransactionMutationsTest extends TestCase
         $response = $this->graphQL('
             mutation {
                 createTransaction(input: {
-                    account_id: ' . $account->id . ',
+                    account_id: '.$account->id.',
                     category_id: '.$category->id.',
                     type: INCOME,
                     description: "Income",
@@ -51,7 +51,7 @@ class TransactionMutationsTest extends TestCase
         $response->assertJson([
             'data' => [
                 'createTransaction' => [
-                    'description' => "Income",
+                    'description' => 'Income',
                     'type' => 'INCOME',
                     'amount' => 100.0,
                     'account' => [
@@ -64,7 +64,7 @@ class TransactionMutationsTest extends TestCase
         ]);
     }
 
-    function test_it_creates_transaction_and_updates_balance_with_expense()
+    public function test_it_creates_transaction_and_updates_balance_with_expense()
     {
         // prepare
         $user = factory(User::class)->create();
@@ -101,7 +101,7 @@ class TransactionMutationsTest extends TestCase
         $response->assertJson([
             'data' => [
                 'createTransaction' => [
-                    'description' => "Expense",
+                    'description' => 'Expense',
                     'type' => 'EXPENSE',
                     'amount' => 50.00,
                     'account' => [
@@ -114,7 +114,7 @@ class TransactionMutationsTest extends TestCase
         ]);
     }
 
-    function test_it_can_update_a_transaction()
+    public function test_it_can_update_a_transaction()
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create([
@@ -155,7 +155,7 @@ class TransactionMutationsTest extends TestCase
         ]);
     }
 
-    function test_it_can_update_a_transaction_case_2()
+    public function test_it_can_update_a_transaction_case_2()
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create([
@@ -196,7 +196,7 @@ class TransactionMutationsTest extends TestCase
         ]);
     }
 
-    function test_it_cant_update_a_transaction_case_when_not_owner()
+    public function test_it_cant_update_a_transaction_case_when_not_owner()
     {
         $user = factory(User::class)->create();
         $user2 = factory(User::class)->create();
@@ -229,13 +229,13 @@ class TransactionMutationsTest extends TestCase
         $response->assertJson([
             'errors' => [
                 [
-                    'message' => "You are not authorized to access updateTransaction"
+                    'message' => 'You are not authorized to access updateTransaction'
                 ]
             ]
         ]);
     }
 
-    function test_it_can_delete_a_transaction()
+    public function test_it_can_delete_a_transaction()
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create([
@@ -273,7 +273,7 @@ class TransactionMutationsTest extends TestCase
         ]);
     }
 
-    function test_it_can_delete_a_transaction_case_2()
+    public function test_it_can_delete_a_transaction_case_2()
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create([

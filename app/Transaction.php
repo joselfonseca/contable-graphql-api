@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
-
     use SoftDeletes;
 
     protected $fillable = ['account_id', 'category_id', 'description', 'amount', 'type'];
@@ -32,12 +31,11 @@ class Transaction extends Model
 
     public function scopeByLoggedInUser($query)
     {
-        if(!request()->user()) {
+        if (! request()->user()) {
             return $query;
         }
-        return $query->whereHas('account', function($query) {
+        return $query->whereHas('account', function ($query) {
             $query->where('user_id', request()->user()->id);
         });
     }
-
 }

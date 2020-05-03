@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(CalculateAccountBalance::class, function($app) {
+        $this->app->singleton(CalculateAccountBalance::class, function ($app) {
             return new CalculateAccountBalance();
         });
     }

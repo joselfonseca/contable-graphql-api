@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Account extends Model
 {
-
     use SoftDeletes;
 
     protected $fillable = ['user_id', 'name', 'balance'];
@@ -32,7 +31,7 @@ class Account extends Model
 
     public function scopeByLoggedInUser($query)
     {
-        if(!request()->user()){
+        if (! request()->user()) {
             return $query;
         }
         return $query->where('user_id', request()->user()->id);

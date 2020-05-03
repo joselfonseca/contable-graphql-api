@@ -2,13 +2,11 @@
 
 namespace App\Observers;
 
-use App\Account;
 use App\CalculateAccountBalance;
 use App\Transaction;
 
 class TransactionObserver
 {
-
     public $calculator;
 
     public function __construct(CalculateAccountBalance $calculator)

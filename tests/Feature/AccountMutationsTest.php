@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Account;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
@@ -13,7 +12,7 @@ class AccountMutationsTest extends TestCase
 {
     use RefreshDatabase;
 
-    function test_it_creates_an_account()
+    public function test_it_creates_an_account()
     {
         $user = factory(User::class)->create();
         Passport::actingAs($user);
@@ -49,7 +48,7 @@ class AccountMutationsTest extends TestCase
         ]);
     }
 
-    function test_it_validates_input()
+    public function test_it_validates_input()
     {
         $user = factory(User::class)->create();
         Passport::actingAs($user);
@@ -69,7 +68,7 @@ class AccountMutationsTest extends TestCase
         $response->assertJson([
             'errors' => [
                 [
-                    "message" => "Field \"createAccount\" argument \"input\" requires type Float!, found \"testsrtst\"."
+                    'message' => 'Field "createAccount" argument "input" requires type Float!, found "testsrtst".'
                 ]
             ]
         ]);
@@ -79,7 +78,7 @@ class AccountMutationsTest extends TestCase
         ]);
     }
 
-    function test_it_validates_balance_no_less_than_0()
+    public function test_it_validates_balance_no_less_than_0()
     {
         $user = factory(User::class)->create();
         Passport::actingAs($user);
@@ -114,7 +113,7 @@ class AccountMutationsTest extends TestCase
         ]);
     }
 
-    function test_it_can_update_an_account()
+    public function test_it_can_update_an_account()
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create([
@@ -150,7 +149,7 @@ class AccountMutationsTest extends TestCase
         ]);
     }
 
-    function test_it_cant_update_an_account_when_not_owner()
+    public function test_it_cant_update_an_account_when_not_owner()
     {
         $user = factory(User::class)->create();
         $user2 = factory(User::class)->create();
@@ -174,7 +173,7 @@ class AccountMutationsTest extends TestCase
         $response->assertJson([
             'errors' => [
                 [
-                    'message' => "You are not authorized to access updateAccount"
+                    'message' => 'You are not authorized to access updateAccount'
                 ]
             ]
         ]);
@@ -185,7 +184,7 @@ class AccountMutationsTest extends TestCase
         ]);
     }
 
-    function test_it_can_delete_an_account()
+    public function test_it_can_delete_an_account()
     {
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create([

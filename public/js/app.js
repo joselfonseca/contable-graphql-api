@@ -15243,6 +15243,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_errors_graphql_error_toast__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../components/errors/graphql-error-toast */ "./resources/js/components/errors/graphql-error-toast.vue");
 /* harmony import */ var _graphql_transactions_create_transaction_data_graphql__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../graphql/transactions/create-transaction-data.graphql */ "./resources/js/graphql/transactions/create-transaction-data.graphql");
 /* harmony import */ var _graphql_transactions_create_transaction_data_graphql__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_graphql_transactions_create_transaction_data_graphql__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _graphql_transactions_create_transaction_graphql__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../graphql/transactions/create-transaction.graphql */ "./resources/js/graphql/transactions/create-transaction.graphql");
+/* harmony import */ var _graphql_transactions_create_transaction_graphql__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_graphql_transactions_create_transaction_graphql__WEBPACK_IMPORTED_MODULE_4__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -15286,6 +15288,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -15304,7 +15313,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         account_id: null,
         category_id: null,
         type: 'INCOME',
-        amount: 0
+        amount: 0,
+        description: null
       },
       errors: null
     };
@@ -15351,7 +15361,55 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    submit: function submit() {}
+    submit: function submit() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _this2.loading = true;
+                _this2.errors = null;
+                _context2.prev = 2;
+                _context2.next = 5;
+                return _this2.$apollo.mutate({
+                  mutation: _graphql_transactions_create_transaction_graphql__WEBPACK_IMPORTED_MODULE_4___default.a,
+                  variables: {
+                    input: _this2.form
+                  }
+                });
+
+              case 5:
+                response = _context2.sent;
+                _this2.loading = false;
+
+                if (!response.data) {
+                  _context2.next = 9;
+                  break;
+                }
+
+                return _context2.abrupt("return", _this2.$router.push('/transactions'));
+
+              case 9:
+                _context2.next = 15;
+                break;
+
+              case 11:
+                _context2.prev = 11;
+                _context2.t0 = _context2["catch"](2);
+                _this2.loading = false;
+                _this2.errors = _context2.t0;
+
+              case 15:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[2, 11]]);
+      }))();
+    }
   }
 });
 
@@ -15366,16 +15424,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
-/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 //
 //
 //
@@ -15383,42 +15431,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    this.getCategories();
-  },
+  mounted: function mounted() {},
   data: function data() {
     return {
       data: []
     };
   },
   methods: {
-    getCategories: function getCategories() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _this.$apollo.query({
-                  query: graphql_tag__WEBPACK_IMPORTED_MODULE_1___default()("\n                    {\n                        categories(first: 20) {data {id name}}\n                        accounts(first: 20) {data {id name}}\n                    }\n                ")
-                });
-
-              case 2:
-                response = _context.sent;
-                _this.data = response.data;
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
+    goToCreate: function goToCreate() {
+      this.$router.push('/transactions/create');
     }
   }
 });
@@ -45495,6 +45519,46 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
+      _c("div", { staticClass: "flex justify-between mb-4" }, [
+        _c(
+          "label",
+          {
+            staticClass:
+              "w-1/2 block text-gray-700 text-sm font-bold mb-2 pr-2",
+            attrs: { for: "description" }
+          },
+          [
+            _vm._v("\n            Descripción\n            "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.description,
+                  expression: "form.description"
+                }
+              ],
+              staticClass:
+                "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-4",
+              attrs: {
+                id: "description",
+                type: "text",
+                placeholder: "Descripción de la transacción"
+              },
+              domProps: { value: _vm.form.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "description", $event.target.value)
+                }
+              }
+            })
+          ]
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "mb-4" },
@@ -45537,10 +45601,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", [_vm._v("Transactions")]),
-    _vm._v(" "),
-    _c("pre", [_vm._v(_vm._s(_vm.data))])
+  return _c("div", { staticClass: "w-full" }, [
+    _c("div", { staticClass: "flex justify-between" }, [
+      _c("h2", { staticClass: "h2" }, [_vm._v("Transacciones")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "button-primary", on: { click: _vm.goToCreate } },
+        [_vm._v("Crear")]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -63177,6 +63247,139 @@ __webpack_require__.r(__webpack_exports__);
     module.exports = doc;
     
         module.exports["createTransactionData"] = oneQuery(doc, "createTransactionData");
+        
+
+
+/***/ }),
+
+/***/ "./resources/js/graphql/transactions/create-transaction.graphql":
+/*!**********************************************************************!*\
+  !*** ./resources/js/graphql/transactions/create-transaction.graphql ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+    var doc = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createTransaction"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateTransactionInput"}}},"directives":[]}],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createTransaction"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":120}};
+    doc.loc.source = {"body":"mutation createTransaction($input: CreateTransactionInput!) {\n    createTransaction(input: $input) {\n        id\n    }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+  
+
+    var names = {};
+    function unique(defs) {
+      return defs.filter(
+        function(def) {
+          if (def.kind !== 'FragmentDefinition') return true;
+          var name = def.name.value
+          if (names[name]) {
+            return false;
+          } else {
+            names[name] = true;
+            return true;
+          }
+        }
+      )
+    }
+  
+
+    // Collect any fragment/type references from a node, adding them to the refs Set
+    function collectFragmentReferences(node, refs) {
+      if (node.kind === "FragmentSpread") {
+        refs.add(node.name.value);
+      } else if (node.kind === "VariableDefinition") {
+        var type = node.type;
+        if (type.kind === "NamedType") {
+          refs.add(type.name.value);
+        }
+      }
+
+      if (node.selectionSet) {
+        node.selectionSet.selections.forEach(function(selection) {
+          collectFragmentReferences(selection, refs);
+        });
+      }
+
+      if (node.variableDefinitions) {
+        node.variableDefinitions.forEach(function(def) {
+          collectFragmentReferences(def, refs);
+        });
+      }
+
+      if (node.definitions) {
+        node.definitions.forEach(function(def) {
+          collectFragmentReferences(def, refs);
+        });
+      }
+    }
+
+    var definitionRefs = {};
+    (function extractReferences() {
+      doc.definitions.forEach(function(def) {
+        if (def.name) {
+          var refs = new Set();
+          collectFragmentReferences(def, refs);
+          definitionRefs[def.name.value] = refs;
+        }
+      });
+    })();
+
+    function findOperation(doc, name) {
+      for (var i = 0; i < doc.definitions.length; i++) {
+        var element = doc.definitions[i];
+        if (element.name && element.name.value == name) {
+          return element;
+        }
+      }
+    }
+
+    function oneQuery(doc, operationName) {
+      // Copy the DocumentNode, but clear out the definitions
+      var newDoc = {
+        kind: doc.kind,
+        definitions: [findOperation(doc, operationName)]
+      };
+      if (doc.hasOwnProperty("loc")) {
+        newDoc.loc = doc.loc;
+      }
+
+      // Now, for the operation we're running, find any fragments referenced by
+      // it or the fragments it references
+      var opRefs = definitionRefs[operationName] || new Set();
+      var allRefs = new Set();
+      var newRefs = new Set();
+
+      // IE 11 doesn't support "new Set(iterable)", so we add the members of opRefs to newRefs one by one
+      opRefs.forEach(function(refName) {
+        newRefs.add(refName);
+      });
+
+      while (newRefs.size > 0) {
+        var prevRefs = newRefs;
+        newRefs = new Set();
+
+        prevRefs.forEach(function(refName) {
+          if (!allRefs.has(refName)) {
+            allRefs.add(refName);
+            var childRefs = definitionRefs[refName] || new Set();
+            childRefs.forEach(function(childRef) {
+              newRefs.add(childRef);
+            });
+          }
+        });
+      }
+
+      allRefs.forEach(function(refName) {
+        var op = findOperation(doc, refName);
+        if (op) {
+          newDoc.definitions.push(op);
+        }
+      });
+
+      return newDoc;
+    }
+
+    module.exports = doc;
+    
+        module.exports["createTransaction"] = oneQuery(doc, "createTransaction");
         
 
 

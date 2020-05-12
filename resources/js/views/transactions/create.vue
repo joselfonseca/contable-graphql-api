@@ -28,6 +28,12 @@
                 <input v-model="form.amount" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-4" id="amount" type="number" min="0" placeholder="0">
             </label>
         </div>
+        <div class="flex justify-between mb-4">
+            <label class="w-1/2 block text-gray-700 text-sm font-bold mb-2 pr-2" for="description">
+                Descripción
+                <input v-model="form.description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-4" id="description" type="text" placeholder="Descripción de la transacción">
+            </label>
+        </div>
         <div class="mb-4">
             <loading :loading="loading"></loading>
             <button v-if="!loading" class="button-primary" @click="submit">Crear transacción</button>
@@ -38,7 +44,8 @@
 <script>
     import Loading from './../../components/common/loading';
     import GraphqlErrorToast from './../../components/errors/graphql-error-toast';
-  import GET_SELECT_DATA from "../../graphql/transactions/create-transaction-data.graphql";
+    import GET_SELECT_DATA from "../../graphql/transactions/create-transaction-data.graphql";
+    import CREATE_TRANSACTION from '../../graphql/transactions/create-transaction.graphql';
 
   export default {
     name: "create",
@@ -54,7 +61,8 @@
           account_id: null,
           category_id: null,
           type: 'INCOME',
-          amount: 0
+          amount: 0,
+          description: null
         },
         errors: null
       }
@@ -81,8 +89,24 @@
         });
         this.loading = this.$apollo.loading;
       },
-      submit () {
-
+      async submit () {
+        this.loading = true;
+        this.errors = null;
+        try {
+            const response = await this.$apollo.mutate({
+              mutation: CREATE_TRANSACTION,
+              variables: {
+                input: this.form
+              }
+            });
+            this.loading = false;
+            if (response.data) {
+                return this.$router.push('/transactions');
+            }
+        } catch (error) {
+            this.loading = false;
+            this.errors = error;
+        }
       }
     }
   }

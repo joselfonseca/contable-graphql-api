@@ -1,35 +1,27 @@
 <template>
-    <div>
-        <h1>Transactions</h1>
-        <pre>{{data}}</pre>
+    <div class="w-full">
+        <div class="flex justify-between">
+            <h2 class="h2">Transacciones</h2>
+            <button class="button-primary" @click="goToCreate">Crear</button>
+        </div>
     </div>
 </template>
 
 <script>
-    import gql from 'graphql-tag'
-    export default {
-        mounted() {
-            this.getCategories();
-        },
-        data() {
-            return {
-                data: [],
-            }
-        },
-        methods: {
-            async getCategories() {
-                const response = await this.$apollo.query({
-                    query: gql(`
-                        {
-                            categories(first: 20) {data {id name}}
-                            accounts(first: 20) {data {id name}}
-                        }
-                    `)
-                })
-                this.data = response.data;
-            }
+  export default {
+      mounted() {
+      },
+      data() {
+          return {
+              data: [],
+          }
+      },
+      methods: {
+        goToCreate() {
+          this.$router.push('/transactions/create');
         }
-    }
+      }
+  }
 </script>
 
 <style scoped>

@@ -1,14 +1,21 @@
 <template>
-    <div class="w-full">
+    <layout>
+      <template v-slot:header>
         <div class="flex justify-between">
-            <h2 class="h2">Cuentas</h2>
-            <button class="button-primary" @click="goToCreate">Crear</button>
+          <h1 class="text-lg leading-6 font-semibold text-gray-900">
+            Cuentas
+          </h1>
+          <button class="button-primary" @click="goToCreate">Crear</button>
         </div>
+      </template>
+      <template v-slot:content>
         <simple-table :headings="headings" :data="accounts" :loading="loading" @editRecord="editRecord" @deleteRecord="deleteRecord"></simple-table>
-    </div>
+      </template>
+    </layout>
 </template>
 
 <script>
+    import Layout from './../../components/common/layout';
     import SimpleTable from './../../components/tables/simple-table';
     import ACCOUNTS from '../../graphql/accounts/accounts.graphql';
     import DELETE_ACCOUNT from '../../graphql/accounts/delete-account.graphql';
@@ -28,7 +35,8 @@
             }
         },
         components: {
-            SimpleTable
+            SimpleTable,
+            Layout
         },
         mounted() {
             this.getAccounts();

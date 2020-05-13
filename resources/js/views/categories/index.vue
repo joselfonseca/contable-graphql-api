@@ -1,14 +1,21 @@
 <template>
-    <div class="w-full">
+    <layout>
+      <template v-slot:header>
         <div class="flex justify-between">
-            <h2 class="h2">Categorías</h2>
-            <button class="button-primary" @click="goToCreate">Crear</button>
+          <h1 class="text-lg leading-6 font-semibold text-gray-900">
+            Categorías
+          </h1>
+          <button class="button-primary" @click="goToCreate">Crear</button>
         </div>
+      </template>
+      <template v-slot:content>
         <simple-table :headings="headings" :data="categories" :loading="loading" @editRecord="editRecord" @deleteRecord="deleteRecord"></simple-table>
-    </div>
+      </template>
+    </layout>
 </template>
 
 <script>
+    import Layout from './../../components/common/layout';
     import SimpleTable from './../../components/tables/simple-table';
     import CATEGORIES from '../../graphql/categories/categories.graphql';
     import DELETE_CATEGORY from '../../graphql/categories/delete-category.graphql';
@@ -27,7 +34,8 @@
             }
         },
         components: {
-            SimpleTable
+            SimpleTable,
+            Layout
         },
         mounted() {
             this.getCategories();

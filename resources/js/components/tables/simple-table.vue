@@ -15,8 +15,8 @@
                   {{ column }}
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                  <button class="text-indigo-600 hover:text-indigo-900" @click="editRecord(item)">Editar</button>
-                  <button class="text-red-600 hover:text-red-900" @click="deleteRecord(item)">Eliminar</button>
+                  <button class="btn btn-primary" @click="editRecord(item)">Editar</button>
+                  <button class="btn btn-danger" @click="deleteRecord(item)">Eliminar</button>
                 </td>
               </tr>
             </tbody>

@@ -2,30 +2,38 @@
   font-size: 1.5rem;
   font-weight: 600;
 }
-.button-primary {
-  background-color: transparent;
-  color: #2b6cb0;
-  font-weight: 600;
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
   border-width: 1px;
-  border-color: #4299e1;
-  border-radius: 0.25rem
+  border-color: transparent;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  border-radius: 0.25rem;
+  color: #fff;
+  background-color: #5a67d8
 }
 
-.button-danger {
-  background-color: transparent;
-  color: #c53030;
-  font-weight: 600;
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
   border-width: 1px;
-  border-color: #f56565;
-  border-radius: 0.25rem
+  border-color: transparent;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  border-radius: 0.25rem;
+  color: #fff;
+  background-color: #e53e3e
 }
 /**
  * This injects Tailwind's base styles, which is a combination of

@@ -23,10 +23,10 @@
                 </div>
                 <div class="hidden md:block">
                   <div class="ml-10 flex items-baseline">
-                    <router-link to="dashboard" active-class="bg-gray-900" class="px-3 py-2 rounded-md text-sm font-medium text-white focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</router-link>
-                    <router-link to="transactions" active-class="bg-gray-900" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Transacciones</router-link>
-                    <router-link to="accounts" active-class="bg-gray-900" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Cuentas</router-link>
-                    <router-link to="categories" active-class="bg-gray-900" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Categorías</router-link>
+                    <router-link to="/dashboard" active-class="bg-gray-900" class="px-3 py-2 rounded-md text-sm font-medium text-white focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</router-link>
+                    <router-link to="/transactions" active-class="bg-gray-900" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Transacciones</router-link>
+                    <router-link to="/accounts" active-class="bg-gray-900" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Cuentas</router-link>
+                    <router-link to="/categories" active-class="bg-gray-900" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Categorías</router-link>
                   </div>
                 </div>
               </div>
@@ -47,26 +47,6 @@
                             {{ Auth::user()->name }}
                         @endauth
                       </button>
-                    </div>
-                    <!--
-                      Profile dropdown panel, show/hide based on dropdown state.
-
-                      Entering: "transition ease-out duration-100"
-                        From: "transform opacity-0 scale-95"
-                        To: "transform opacity-100 scale-100"
-                      Leaving: "transition ease-in duration-75"
-                        From: "transform opacity-100 scale-100"
-                        To: "transform opacity-0 scale-95"
-                    -->
-                    <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg transform opacity-0 scale-95">
-                      <div class="py-1 rounded-md bg-white shadow-xs">
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Salilda segura</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                            {{ csrf_field() }}
-                        </form>
-                      </div>
                     </div>
                   </div>
                 </div>

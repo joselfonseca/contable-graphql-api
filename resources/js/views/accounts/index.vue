@@ -1,11 +1,18 @@
 <template>
     <layout>
       <template v-slot:header>
-        <div class="flex justify-between">
-          <h1 class="text-lg leading-6 font-semibold text-gray-900">
+        <div class="flex justify-between items-center">
+          <h1 class="text-lg font-semibold text-gray-900">
             Cuentas
           </h1>
-          <button class="button-primary" @click="goToCreate">Crear</button>
+          <router-link to='/accounts/create'>
+            <button class="btn btn-primary">
+              <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z" clip-rule="evenodd"/>
+              </svg>
+              Crear cuenta
+            </button>
+          </router-link>
         </div>
       </template>
       <template v-slot:content>
@@ -58,9 +65,6 @@
                     };
                 });
                 this.loading = this.$apollo.loading;
-            },
-            goToCreate() {
-                this.$router.push('/accounts/create');
             },
             editRecord(record) {
                 this.$router.push(`/accounts/${record.id}/edit`);

@@ -5,13 +5,13 @@
         <div class="px-4 py-5 bg-white sm:p-6">
           <div class="grid grid-cols-1 gap-6">
             <div class="col-span-1 sm:col-span-1" v-for="field in fields">
-              <text-field :field="field" v-if="field.type === 'text'"></text-field>
-              <numeric-field :field="field" v-if="field.type === 'numeric'"></numeric-field>
+              <text-field :field="field" v-if="field.type === 'text'" @updated="syncValue"></text-field>
+              <numeric-field :field="field" v-if="field.type === 'numeric'" @updated="syncValue"></numeric-field>
             </div>
           </div>
         </div>
         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-          <button class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out">
+          <button @click="submit" class="py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out">
             {{buttonText}}
           </button>
         </div>
@@ -32,6 +32,24 @@ export default {
     buttonText: {
       type: String,
       required: true
+    }
+  },
+  data() {
+    return {
+      updatedFields: this.fields
+    }
+  },
+  methods: {
+    syncValue(field) {
+      this.updatedFields = this.updatedFields.map(item => {
+        if (item.name === field.name) {
+          return field;
+        }
+        return item;
+      });
+    },
+    submit () {
+      this.$emit('submited', this.updatedFields);
     }
   }
 }

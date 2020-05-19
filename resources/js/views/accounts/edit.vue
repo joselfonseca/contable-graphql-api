@@ -1,35 +1,65 @@
 <template>
-    <div class="w-full">
-        <graphql-error-toast v-if="this.errors" :errors="this.errors"></graphql-error-toast>
-        <div class="flex justify-between mb-4">
-            <label class="w-1/2 block text-gray-700 text-sm font-bold mb-2 pr-2" for="name">
-                Nombre de la cuenta
-                <input v-model="form.name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-4" id="name" type="text" placeholder="Nombre">
-            </label>
-            <label class="w-1/2 block text-gray-700 text-sm font-bold mb-2" for="name">
-                Saldo actual
-                <input v-model="form.balance" disabled="disabled" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-4" id="balance" type="number" min="0" placeholder="0">
-            </label>
+    <layout>
+      <template v-slot:header>
+        <div class="flex justify-between items-center">
+          <h1 class="text-lg font-semibold text-gray-900">
+            Editar cuenta
+          </h1>
+          <router-link to='/accounts'>
+            <button class="btn btn-primary">
+              <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z" clip-rule="evenodd"/>
+              </svg>
+              Listado de cuentas
+            </button>
+          </router-link>
         </div>
-        <div class="mb-4">
-            <loading :loading="loading"></loading>
-            <button v-if="!loading" class="button-primary" @click="submit">Editar cuenta</button>
+      </template>
+      <template v-slot:content>
+        <div class="w-full flex justify-center">
+          <div class="w-2/4">
+            <graphql-error-toast v-if="errors" :errors="errors"></graphql-error-toast>
+            <simple-form :fields="form.fields" :button-text="form.buttonText" @submited="updateAccount"></simple-form>
+          </div>
         </div>
-    </div>
+      </template>
+    </layout>
 </template>
 
 <script>
+    import Layout from './../../components/common/layout';
     import GET_ACCOUNT from './../../graphql/accounts/account.graphql';
     import UPDATE_ACCOUNT from './../../graphql/accounts/update-account.graphql';
     import GraphqlErrorToast from './../../components/errors/graphql-error-toast';
     import Loading from './../../components/common/loading';
+    import SimpleForm from './../../components/forms/simple-form';
+
     export default {
-        components: {GraphqlErrorToast, Loading},
+        components: {GraphqlErrorToast, Loading, Layout, SimpleForm},
         data() {
             return {
                 form: {
-                    name: null,
-                    balance:0
+                  fields: [
+                    {
+                      type: 'text',
+                      name: 'name',
+                      placeholder: 'Nombre de tu cuenta',
+                      required: true,
+                      value: null,
+                      label: 'Nombre de tu cuenta',
+                      disabled: false
+                    },
+                    {
+                      type: 'numeric',
+                      name: 'balance',
+                      placeholder: 'Balance actual de la cuenta',
+                      required: false,
+                      value: null,
+                      label: 'Balance actual',
+                      disabled: true
+                    }
+                  ],
+                  buttonText: 'Actualizar cuenta'
                 },
                 errors: null,
                 loading: false,
@@ -51,23 +81,31 @@
                     });
                     this.loading = false;
                     this.account = response.data.account;
-                    this.form.name = response.data.account.name;
-                    this.form.balance = response.data.account.balance;
+                    this.form.fields = this.form.fields.map(item => {
+                      if (response.data.account[item.name] !== undefined) {
+                        item.value = response.data.account[item.name];
+                      }
+                      return item;
+                    });
                 } catch (e) {
                     console.log(e);
                 }
             },
-            async submit() {
+            async updateAccount(fields) {
                 this.loading = true;
                 this.errors = null;
+                const input = {};
+                fields.forEach(item => {
+                  if (!item.disabled) {
+                    input[item.name] = item.value;
+                  }
+                });
                 try {
                     const response = await this.$apollo.mutate({
                         mutation: UPDATE_ACCOUNT,
                         variables: {
                             id: this.account.id,
-                            input: {
-                                name: this.form.name
-                            }
+                            input
                         }
                     });
                     this.loading = false;

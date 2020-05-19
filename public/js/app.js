@@ -14400,7 +14400,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['field']
+  props: ['field'],
+  data: function data() {
+    return {
+      value: null
+    };
+  },
+  watch: {
+    value: function value() {
+      var updatedField = this.field;
+      updatedField.value = parseFloat(this.value);
+      this.$emit('updated', updatedField);
+    },
+    'field.value': {
+      handler: function handler() {
+        this.value = this.field.value;
+      },
+      immediate: true
+    }
+  }
 });
 
 /***/ }),
@@ -14421,7 +14439,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['field']
+  props: ['field'],
+  data: function data() {
+    return {
+      value: null
+    };
+  },
+  watch: {
+    value: function value() {
+      var updatedField = this.field;
+      updatedField.value = this.value;
+      this.$emit('updated', updatedField);
+    },
+    'field.value': {
+      handler: function handler() {
+        this.value = this.field.value;
+      },
+      immediate: true
+    }
+  }
 });
 
 /***/ }),
@@ -14473,6 +14509,25 @@ __webpack_require__.r(__webpack_exports__);
     buttonText: {
       type: String,
       required: true
+    }
+  },
+  data: function data() {
+    return {
+      updatedFields: this.fields
+    };
+  },
+  methods: {
+    syncValue: function syncValue(field) {
+      this.updatedFields = this.updatedFields.map(function (item) {
+        if (item.name === field.name) {
+          return field;
+        }
+
+        return item;
+      });
+    },
+    submit: function submit() {
+      this.$emit('submited', this.updatedFields);
     }
   }
 });
@@ -14615,14 +14670,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           placeholder: 'Nombre de tu cuenta',
           required: true,
           value: null,
-          label: 'Nombre de tu cuenta'
+          label: 'Nombre de tu cuenta',
+          disabled: false
         }, {
           type: 'numeric',
           name: 'balance',
           placeholder: 'Balance actual de la cuenta',
           required: false,
           value: null,
-          label: 'Balance actual'
+          label: 'Balance actual',
+          disabled: false
         }],
         buttonText: "Crear cuenta"
       },
@@ -14631,56 +14688,57 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    submit: function submit() {
+    createAccount: function createAccount(fields) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
+        var input, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _this.loading = true;
                 _this.errors = null;
-                _context.prev = 2;
-                _context.next = 5;
+                input = {};
+                fields.forEach(function (item) {
+                  input[item.name] = item.value;
+                });
+                _context.prev = 4;
+                _context.next = 7;
                 return _this.$apollo.mutate({
                   mutation: _graphql_accounts_create_account_graphql__WEBPACK_IMPORTED_MODULE_2___default.a,
                   variables: {
-                    input: {
-                      name: _this.form.name,
-                      balance: _this.form.balance
-                    }
+                    input: input
                   }
                 });
 
-              case 5:
+              case 7:
                 response = _context.sent;
                 _this.loading = false;
 
                 if (!response.data) {
-                  _context.next = 9;
+                  _context.next = 11;
                   break;
                 }
 
                 return _context.abrupt("return", _this.$router.push('/accounts'));
 
-              case 9:
-                _context.next = 15;
+              case 11:
+                _context.next = 17;
                 break;
 
-              case 11:
-                _context.prev = 11;
-                _context.t0 = _context["catch"](2);
+              case 13:
+                _context.prev = 13;
+                _context.t0 = _context["catch"](4);
                 _this.loading = false;
                 _this.errors = _context.t0;
 
-              case 15:
+              case 17:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[2, 11]]);
+        }, _callee, null, [[4, 13]]);
       }))();
     }
   }
@@ -14699,12 +14757,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _graphql_accounts_account_graphql__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../graphql/accounts/account.graphql */ "./resources/js/graphql/accounts/account.graphql");
-/* harmony import */ var _graphql_accounts_account_graphql__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_graphql_accounts_account_graphql__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _graphql_accounts_update_account_graphql__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../graphql/accounts/update-account.graphql */ "./resources/js/graphql/accounts/update-account.graphql");
-/* harmony import */ var _graphql_accounts_update_account_graphql__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_graphql_accounts_update_account_graphql__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_errors_graphql_error_toast__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../components/errors/graphql-error-toast */ "./resources/js/components/errors/graphql-error-toast.vue");
-/* harmony import */ var _components_common_loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../components/common/loading */ "./resources/js/components/common/loading.vue");
+/* harmony import */ var _components_common_layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../components/common/layout */ "./resources/js/components/common/layout.vue");
+/* harmony import */ var _graphql_accounts_account_graphql__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../graphql/accounts/account.graphql */ "./resources/js/graphql/accounts/account.graphql");
+/* harmony import */ var _graphql_accounts_account_graphql__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_graphql_accounts_account_graphql__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _graphql_accounts_update_account_graphql__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../graphql/accounts/update-account.graphql */ "./resources/js/graphql/accounts/update-account.graphql");
+/* harmony import */ var _graphql_accounts_update_account_graphql__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_graphql_accounts_update_account_graphql__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_errors_graphql_error_toast__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../components/errors/graphql-error-toast */ "./resources/js/components/errors/graphql-error-toast.vue");
+/* harmony import */ var _components_common_loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../components/common/loading */ "./resources/js/components/common/loading.vue");
+/* harmony import */ var _components_forms_simple_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../components/forms/simple-form */ "./resources/js/components/forms/simple-form.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -14731,20 +14791,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    GraphqlErrorToast: _components_errors_graphql_error_toast__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Loading: _components_common_loading__WEBPACK_IMPORTED_MODULE_4__["default"]
+    GraphqlErrorToast: _components_errors_graphql_error_toast__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Loading: _components_common_loading__WEBPACK_IMPORTED_MODULE_5__["default"],
+    Layout: _components_common_layout__WEBPACK_IMPORTED_MODULE_1__["default"],
+    SimpleForm: _components_forms_simple_form__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   data: function data() {
     return {
       form: {
-        name: null,
-        balance: 0
+        fields: [{
+          type: 'text',
+          name: 'name',
+          placeholder: 'Nombre de tu cuenta',
+          required: true,
+          value: null,
+          label: 'Nombre de tu cuenta',
+          disabled: false
+        }, {
+          type: 'numeric',
+          name: 'balance',
+          placeholder: 'Balance actual de la cuenta',
+          required: false,
+          value: null,
+          label: 'Balance actual',
+          disabled: true
+        }],
+        buttonText: 'Actualizar cuenta'
       },
       errors: null,
       loading: false,
@@ -14768,7 +14856,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.prev = 1;
                 _context.next = 4;
                 return _this.$apollo.query({
-                  query: _graphql_accounts_account_graphql__WEBPACK_IMPORTED_MODULE_1___default.a,
+                  query: _graphql_accounts_account_graphql__WEBPACK_IMPORTED_MODULE_2___default.a,
                   variables: {
                     id: _this.$route.params.id
                   }
@@ -14778,74 +14866,83 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context.sent;
                 _this.loading = false;
                 _this.account = response.data.account;
-                _this.form.name = response.data.account.name;
-                _this.form.balance = response.data.account.balance;
-                _context.next = 14;
+                _this.form.fields = _this.form.fields.map(function (item) {
+                  if (response.data.account[item.name] !== undefined) {
+                    item.value = response.data.account[item.name];
+                  }
+
+                  return item;
+                });
+                _context.next = 13;
                 break;
 
-              case 11:
-                _context.prev = 11;
+              case 10:
+                _context.prev = 10;
                 _context.t0 = _context["catch"](1);
                 console.log(_context.t0);
 
-              case 14:
+              case 13:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 11]]);
+        }, _callee, null, [[1, 10]]);
       }))();
     },
-    submit: function submit() {
+    updateAccount: function updateAccount(fields) {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var response;
+        var input, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _this2.loading = true;
                 _this2.errors = null;
-                _context2.prev = 2;
-                _context2.next = 5;
+                input = {};
+                fields.forEach(function (item) {
+                  if (!item.disabled) {
+                    input[item.name] = item.value;
+                  }
+                });
+                _context2.prev = 4;
+                _context2.next = 7;
                 return _this2.$apollo.mutate({
-                  mutation: _graphql_accounts_update_account_graphql__WEBPACK_IMPORTED_MODULE_2___default.a,
+                  mutation: _graphql_accounts_update_account_graphql__WEBPACK_IMPORTED_MODULE_3___default.a,
                   variables: {
                     id: _this2.account.id,
-                    input: {
-                      name: _this2.form.name
-                    }
+                    input: input
                   }
                 });
 
-              case 5:
+              case 7:
                 response = _context2.sent;
                 _this2.loading = false;
 
                 if (!response.data) {
-                  _context2.next = 9;
+                  _context2.next = 11;
                   break;
                 }
 
                 return _context2.abrupt("return", _this2.$router.push('/accounts'));
 
-              case 9:
-                _context2.next = 15;
+              case 11:
+                _context2.next = 17;
                 break;
 
-              case 11:
-                _context2.prev = 11;
-                _context2.t0 = _context2["catch"](2);
+              case 13:
+                _context2.prev = 13;
+                _context2.t0 = _context2["catch"](4);
                 _this2.loading = false;
                 _this2.errors = _context2.t0;
 
-              case 15:
+              case 17:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[2, 11]]);
+        }, _callee2, null, [[4, 13]]);
       }))();
     }
   }
@@ -44914,13 +45011,31 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.value,
+          expression: "value"
+        }
+      ],
       staticClass:
         "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5",
       attrs: {
+        disabled: _vm.field.disabled,
         type: "number",
         id: _vm.field.name,
         name: _vm.field.name,
         placeholder: _vm.field.placeholder
+      },
+      domProps: { value: _vm.value },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.value = $event.target.value
+        }
       }
     })
   ])
@@ -44958,13 +45073,31 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.value,
+          expression: "value"
+        }
+      ],
       staticClass:
         "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5",
       attrs: {
+        disabled: _vm.field.disabled,
         type: "text",
         id: _vm.field.name,
         name: _vm.field.name,
         placeholder: _vm.field.placeholder
+      },
+      domProps: { value: _vm.value },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.value = $event.target.value
+        }
       }
     })
   ])
@@ -45004,11 +45137,17 @@ var render = function() {
                 { staticClass: "col-span-1 sm:col-span-1" },
                 [
                   field.type === "text"
-                    ? _c("text-field", { attrs: { field: field } })
+                    ? _c("text-field", {
+                        attrs: { field: field },
+                        on: { updated: _vm.syncValue }
+                      })
                     : _vm._e(),
                   _vm._v(" "),
                   field.type === "numeric"
-                    ? _c("numeric-field", { attrs: { field: field } })
+                    ? _c("numeric-field", {
+                        attrs: { field: field },
+                        on: { updated: _vm.syncValue }
+                      })
                     : _vm._e()
                 ],
                 1
@@ -45023,7 +45162,8 @@ var render = function() {
             "button",
             {
               staticClass:
-                "py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out"
+                "py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-indigo-600 transition duration-150 ease-in-out",
+              on: { click: _vm.submit }
             },
             [_vm._v("\n          " + _vm._s(_vm.buttonText) + "\n        ")]
           )
@@ -45253,7 +45393,8 @@ var render = function() {
                     attrs: {
                       fields: _vm.form.fields,
                       "button-text": _vm.form.buttonText
-                    }
+                    },
+                    on: { submited: _vm.createAccount }
                   })
                 ],
                 1
@@ -45288,108 +45429,83 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "w-full" },
-    [
-      this.errors
-        ? _c("graphql-error-toast", { attrs: { errors: this.errors } })
-        : _vm._e(),
-      _vm._v(" "),
-      _c("div", { staticClass: "flex justify-between mb-4" }, [
-        _c(
-          "label",
-          {
-            staticClass:
-              "w-1/2 block text-gray-700 text-sm font-bold mb-2 pr-2",
-            attrs: { for: "name" }
-          },
-          [
-            _vm._v("\n            Nombre de la cuenta\n            "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.name,
-                  expression: "form.name"
-                }
+  return _c("layout", {
+    scopedSlots: _vm._u([
+      {
+        key: "header",
+        fn: function() {
+          return [
+            _c(
+              "div",
+              { staticClass: "flex justify-between items-center" },
+              [
+                _c(
+                  "h1",
+                  { staticClass: "text-lg font-semibold text-gray-900" },
+                  [_vm._v("\n        Editar cuenta\n      ")]
+                ),
+                _vm._v(" "),
+                _c("router-link", { attrs: { to: "/accounts" } }, [
+                  _c("button", { staticClass: "btn btn-primary" }, [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "-ml-0.5 mr-2 h-4 w-4",
+                        attrs: { fill: "currentColor", viewBox: "0 0 24 24" }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z",
+                            "clip-rule": "evenodd"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v("\n          Listado de cuentas\n        ")
+                  ])
+                ])
               ],
-              staticClass:
-                "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-4",
-              attrs: { id: "name", type: "text", placeholder: "Nombre" },
-              domProps: { value: _vm.form.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "name", $event.target.value)
-                }
-              }
-            })
+              1
+            )
           ]
-        ),
-        _vm._v(" "),
-        _c(
-          "label",
-          {
-            staticClass: "w-1/2 block text-gray-700 text-sm font-bold mb-2",
-            attrs: { for: "name" }
-          },
-          [
-            _vm._v("\n            Saldo actual\n            "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.balance,
-                  expression: "form.balance"
-                }
-              ],
-              staticClass:
-                "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-4",
-              attrs: {
-                disabled: "disabled",
-                id: "balance",
-                type: "number",
-                min: "0",
-                placeholder: "0"
-              },
-              domProps: { value: _vm.form.balance },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "balance", $event.target.value)
-                }
-              }
-            })
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "mb-4" },
-        [
-          _c("loading", { attrs: { loading: _vm.loading } }),
-          _vm._v(" "),
-          !_vm.loading
-            ? _c(
-                "button",
-                { staticClass: "button-primary", on: { click: _vm.submit } },
-                [_vm._v("Editar cuenta")]
+        },
+        proxy: true
+      },
+      {
+        key: "content",
+        fn: function() {
+          return [
+            _c("div", { staticClass: "w-full flex justify-center" }, [
+              _c(
+                "div",
+                { staticClass: "w-2/4" },
+                [
+                  _vm.errors
+                    ? _c("graphql-error-toast", {
+                        attrs: { errors: _vm.errors }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("simple-form", {
+                    attrs: {
+                      fields: _vm.form.fields,
+                      "button-text": _vm.form.buttonText
+                    },
+                    on: { submited: _vm.updateAccount }
+                  })
+                ],
+                1
               )
-            : _vm._e()
-        ],
-        1
-      )
-    ],
-    1
-  )
+            ])
+          ]
+        },
+        proxy: true
+      }
+    ])
+  })
 }
 var staticRenderFns = []
 render._withStripped = true

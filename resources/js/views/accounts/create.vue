@@ -19,7 +19,7 @@
         <div class="w-full flex justify-center">
           <div class="w-2/4">
             <graphql-error-toast v-if="errors" :errors="errors"></graphql-error-toast>
-            <simple-form :fields="form.fields" :button-text="form.buttonText"></simple-form>
+            <simple-form :fields="form.fields" :button-text="form.buttonText" @submited="createAccount"></simple-form>
           </div>
         </div>
       </template>
@@ -47,7 +47,8 @@
                           placeholder: 'Nombre de tu cuenta',
                           required: true,
                           value: null,
-                          label: 'Nombre de tu cuenta'
+                          label: 'Nombre de tu cuenta',
+                          disabled: false
                         },
                         {
                           type: 'numeric',
@@ -55,7 +56,8 @@
                           placeholder: 'Balance actual de la cuenta',
                           required: false,
                           value: null,
-                          label: 'Balance actual'
+                          label: 'Balance actual',
+                          disabled: false
                         }
                       ],
                       buttonText: "Crear cuenta"
@@ -65,17 +67,18 @@
               }
         },
         methods: {
-            async submit() {
+            async createAccount(fields) {
                 this.loading = true;
                 this.errors = null;
+                const input = {};
+                fields.forEach(item => {
+                  input[item.name] = item.value;
+                });
                 try {
                     const response = await this.$apollo.mutate({
                         mutation: CREATE_ACCOUNT,
                         variables: {
-                            input: {
-                                name: this.form.name,
-                                balance: this.form.balance
-                            }
+                            input
                         }
                     });
                     this.loading = false;

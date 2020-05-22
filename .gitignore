@@ -12,3 +12,6 @@ npm-debug.log
 yarn-error.log
 .php_cs.cache
 graphql-api-contable/
+public/css
+public/js
+public/mix-manifest.json

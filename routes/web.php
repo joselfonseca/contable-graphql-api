@@ -5,4 +5,4 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/{view}', 'SpaController@index')->where('view', '.*')->name('home');
+Route::get('/{view}', 'SpaController@index')->where('view', '.*')->middleware('auth')->name('home');

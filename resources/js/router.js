@@ -44,6 +44,10 @@ const routes = [
     {
         path: '/categories/:id/edit',
         component: EditCategory
+    },
+    {
+        path: '/',
+        redirect: '/transactions'
     }
 ];
 

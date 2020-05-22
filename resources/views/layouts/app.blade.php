@@ -23,7 +23,6 @@
                 </div>
                 <div class="hidden md:block">
                   <div class="ml-10 flex items-baseline">
-                    <router-link to="/dashboard" active-class="bg-gray-900" class="px-3 py-2 rounded-md text-sm font-medium text-white focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</router-link>
                     <router-link to="/transactions" active-class="bg-gray-900" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Transacciones</router-link>
                     <router-link to="/accounts" active-class="bg-gray-900" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Cuentas</router-link>
                     <router-link to="/categories" active-class="bg-gray-900" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Categorías</router-link>

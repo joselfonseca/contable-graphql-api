@@ -1,46 +1,73 @@
 <template>
-    <div class="w-full">
-        <graphql-error-toast v-if="this.errors" :errors="this.errors"></graphql-error-toast>
-        <div class="flex justify-between mb-4">
-            <label class="w-1/2 block text-gray-700 text-sm font-bold mb-2 pr-2" for="name">
-                Nombre de la categoria
-                <input v-model="form.name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-4" id="name" type="text" placeholder="Nombre">
-            </label>
+  <layout>
+      <template v-slot:header>
+        <div class="flex justify-between items-center">
+          <h1 class="text-lg font-semibold text-gray-900">
+            Crear categoria
+          </h1>
+          <router-link to='/categories'>
+            <button class="btn btn-primary">
+              <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z" clip-rule="evenodd"/>
+              </svg>
+              Listado de categorias
+            </button>
+          </router-link>
         </div>
-        <div class="mb-4">
-            <loading :loading="loading"></loading>
-            <button v-if="!loading" class="button-primary" @click="submit">Crear categoría</button>
+      </template>
+      <template v-slot:content>
+        <div class="w-full flex justify-center">
+          <div class="w-2/4">
+            <graphql-error-toast v-if="errors" :errors="errors"></graphql-error-toast>
+            <simple-form :fields="form.fields" :button-text="form.buttonText" @submited="createCategory"></simple-form>
+          </div>
         </div>
-    </div>
+      </template>
+    </layout>
 </template>
 
 <script>
+    import Layout from './../../components/common/layout';
     import CREATE_CATEGORY from './../../graphql/categories/create-category.graphql';
     import GraphqlErrorToast from './../../components/errors/graphql-error-toast';
     import Loading from './../../components/common/loading';
+    import SimpleForm from './../../components/forms/simple-form';
 
     export default {
-        components: {GraphqlErrorToast, Loading},
+        components: {GraphqlErrorToast, Loading, Layout, SimpleForm},
         data() {
               return {
                   form: {
-                      name: null,
+                      fields: [
+                        {
+                          type: 'text',
+                          name: 'name',
+                          placeholder: 'Nombre de tu categoria',
+                          required: true,
+                          value: null,
+                          label: 'Nombre de tu categoria',
+                          disabled: false
+                        }
+                      ],
+                      buttonText: "Crear categoria"
                   },
                   errors: null,
                   loading: false
               }
         },
         methods: {
-            async submit() {
+            async createCategory(fields) {
                 this.loading = true;
                 this.errors = null;
+                const input = {};
+                fields.forEach(item => {
+                  input[item.name] = item.value;
+                });
                 try {
                     const response = await this.$apollo.mutate({
                         mutation: CREATE_CATEGORY,
                         variables: {
-                            input: {
-                                name: this.form.name
-                            }
+                            input
                         }
                     });
                     this.loading = false;

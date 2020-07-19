@@ -5,7 +5,7 @@
         <slot name="header"></slot>
       </div>
     </header>
-    <main class="h-full">
+    <main class="container mx-auto h-full">
       <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <slot name="content"></slot>
       </div>

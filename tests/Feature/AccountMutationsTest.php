@@ -124,7 +124,7 @@ class AccountMutationsTest extends TestCase
         Passport::actingAs($user);
         $response = $this->graphQL('
             mutation {
-                updateAccount(id: ' . $account->id . ', input: {
+                updateAccount(id: '.$account->id.', input: {
                     name: "Savings"
                 }) {
                     id
@@ -161,7 +161,7 @@ class AccountMutationsTest extends TestCase
         Passport::actingAs($user2);
         $response = $this->graphQL('
             mutation {
-                updateAccount(id: ' . $account->id . ', input: {
+                updateAccount(id: '.$account->id.', input: {
                     name: "Savings"
                 }) {
                     id
@@ -195,7 +195,7 @@ class AccountMutationsTest extends TestCase
         Passport::actingAs($user);
         $response = $this->graphQL('
             mutation {
-                deleteAccount(id: ' . $account->id . ') {
+                deleteAccount(id: '.$account->id.') {
                     id
                 }
             }

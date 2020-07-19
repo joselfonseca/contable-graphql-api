@@ -11,7 +11,7 @@
             </thead>
             <tbody>
               <tr class="bg-white" v-if="!loading" v-for="item in data" :key="item.id">
-                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900" v-for="column in item">
+                <td v-if="columnKey != 'id'" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900" v-for="column, columnKey in item">
                   {{ column }}
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">

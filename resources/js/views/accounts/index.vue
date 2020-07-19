@@ -7,9 +7,6 @@
           </h1>
           <router-link to='/accounts/create'>
             <button class="btn btn-primary">
-              <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                <path fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z" clip-rule="evenodd"/>
-              </svg>
               Crear cuenta
             </button>
           </router-link>
@@ -33,7 +30,6 @@
         data() {
             return {
                 headings: [
-                    'ID',
                     'Nombre',
                     'Saldo actual'
                 ],
@@ -61,7 +57,7 @@
                     return {
                         id: item.id,
                         name: item.name,
-                        balance: item.balance
+                        balance: `$${new Intl.NumberFormat('es-ES').format(item.balance)}`
                     };
                 });
                 this.loading = this.$apollo.loading;
@@ -89,6 +85,10 @@
                         });
                     }
                 }).then(response => {
+                    this.$toasted.success('Cuenta eliminada satisfactoriamente!', {
+                          position: "top-center",
+                          duration : 5000
+                      });
                     this.getAccounts();
                 })
             }

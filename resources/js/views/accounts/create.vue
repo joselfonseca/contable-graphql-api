@@ -7,9 +7,6 @@
           </h1>
           <router-link to='/accounts'>
             <button class="btn btn-primary">
-              <svg class="-ml-0.5 mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                <path fill-rule="evenodd" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z" clip-rule="evenodd"/>
-              </svg>
               Listado de cuentas
             </button>
           </router-link>
@@ -51,11 +48,11 @@
                           disabled: false
                         },
                         {
-                          type: 'numeric',
+                          type: 'money',
                           name: 'balance',
                           placeholder: 'Balance actual de la cuenta',
                           required: false,
-                          value: null,
+                          value: 0,
                           label: 'Balance actual',
                           disabled: false
                         }
@@ -83,6 +80,10 @@
                     });
                     this.loading = false;
                     if (response.data) {
+                        this.$toasted.success('Cuenta creada satisfactoriamente!', {
+                            position: "top-center",
+                            duration : 5000
+                        });
                         return this.$router.push('/accounts');
                     }
                 } catch (error) {

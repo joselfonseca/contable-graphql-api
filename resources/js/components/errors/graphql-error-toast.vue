@@ -16,8 +16,7 @@
                           error += `${value}`
                       }
                       this.$toasted.error(error, {
-                          theme: "bubble",
-                          position: "top-right",
+                          position: "bottom-right",
                           duration : 5000
                       })
                       break;

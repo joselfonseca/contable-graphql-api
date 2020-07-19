@@ -46,15 +46,6 @@
                           value: null,
                           label: 'Nombre de tu cuenta',
                           disabled: false
-                        },
-                        {
-                          type: 'money',
-                          name: 'balance',
-                          placeholder: 'Balance actual de la cuenta',
-                          required: false,
-                          value: 0,
-                          label: 'Balance actual',
-                          disabled: false
                         }
                       ],
                       buttonText: "Crear cuenta"

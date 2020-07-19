@@ -3,7 +3,6 @@ query accounts($first: Int!, $page: Int) {
         data {
             id
             name
-            balance
         }
     }
 }

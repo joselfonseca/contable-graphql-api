@@ -18,11 +18,9 @@ class AccountMutationsTest extends TestCase
         Passport::actingAs($user);
         $response = $this->graphQL('mutation {
             createAccount(input: {
-                name: "wallet",
-                balance: 200
+                name: "wallet"
             }) {
                 name
-                balance
                 user {
                     id
                     name
@@ -33,7 +31,6 @@ class AccountMutationsTest extends TestCase
             'data' => [
                 'createAccount' => [
                     'name' => 'wallet',
-                    'balance' => 200.00,
                     'user' => [
                         'id' => $user->id,
                         'name' => $user->name
@@ -42,72 +39,6 @@ class AccountMutationsTest extends TestCase
             ]
         ]);
         $this->assertDatabaseHas('accounts', [
-            'name' => 'wallet',
-            'balance' => '200',
-            'user_id' => $user->id
-        ]);
-    }
-
-    public function test_it_validates_input()
-    {
-        $user = factory(User::class)->create();
-        Passport::actingAs($user);
-        $response = $this->graphQL('mutation {
-            createAccount(input: {
-                name: "wallet",
-                balance: "testsrtst"
-            }) {
-                name
-                balance
-                user {
-                    id
-                    name
-                }
-            }
-        }');
-        $response->assertJson([
-            'errors' => [
-                [
-                    'message' => 'Field "createAccount" argument "input" requires type Float!, found "testsrtst".'
-                ]
-            ]
-        ]);
-        $this->assertDatabaseMissing('accounts', [
-            'name' => 'wallet',
-            'user_id' => $user->id
-        ]);
-    }
-
-    public function test_it_validates_balance_no_less_than_0()
-    {
-        $user = factory(User::class)->create();
-        Passport::actingAs($user);
-        $response = $this->graphQL('mutation {
-            createAccount(input: {
-                name: "wallet",
-                balance: -50
-            }) {
-                name
-                balance
-                user {
-                    id
-                    name
-                }
-            }
-        }');
-        $response->assertJson([
-            'errors' => [
-                [
-                    'message' => 'Validation failed for the field [createAccount].',
-                    'extensions' => [
-                        'validation' => [
-                            'input.balance' => ['The input.balance must be greater than or equal 0.']
-                        ]
-                    ]
-                ]
-            ]
-        ]);
-        $this->assertDatabaseMissing('accounts', [
             'name' => 'wallet',
             'user_id' => $user->id
         ]);
@@ -118,8 +49,7 @@ class AccountMutationsTest extends TestCase
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create([
             'name' => 'Wallet',
-            'user_id' => $user->id,
-            'balance' => 100
+            'user_id' => $user->id
         ]);
         Passport::actingAs($user);
         $response = $this->graphQL('
@@ -129,7 +59,6 @@ class AccountMutationsTest extends TestCase
                 }) {
                     id
                     name
-                    balance
                 }
             }
         ');
@@ -137,8 +66,7 @@ class AccountMutationsTest extends TestCase
             'data' => [
                 'updateAccount' => [
                     'id' => $account->id,
-                    'name' => 'Savings',
-                    'balance' => $account->balance
+                    'name' => 'Savings'
                 ]
             ]
         ]);
@@ -155,8 +83,7 @@ class AccountMutationsTest extends TestCase
         $user2 = factory(User::class)->create();
         $account = factory(Account::class)->create([
             'name' => 'Wallet',
-            'user_id' => $user->id,
-            'balance' => 100
+            'user_id' => $user->id
         ]);
         Passport::actingAs($user2);
         $response = $this->graphQL('
@@ -166,7 +93,6 @@ class AccountMutationsTest extends TestCase
                 }) {
                     id
                     name
-                    balance
                 }
             }
         ');
@@ -189,8 +115,7 @@ class AccountMutationsTest extends TestCase
         $user = factory(User::class)->create();
         $account = factory(Account::class)->create([
             'name' => 'Wallet',
-            'user_id' => $user->id,
-            'balance' => 100
+            'user_id' => $user->id
         ]);
         Passport::actingAs($user);
         $response = $this->graphQL('

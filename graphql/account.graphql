@@ -1,16 +1,13 @@
 type Account {
     id: ID!
     name: String!
-    balance: Float!
     created_at: DateTime!
     updated_at: DateTime!
     user: User! @belongsTo
-    transactions: [Transaction!] @hasMany
 }
 
 input CreateAccountInput {
-    name: String @rules(apply: ["required"], messages: { required: " El nombre de la cuenta es requerido"})
-    balance: Float! @rules(apply: ["gte:0"])
+    name: String!
 }
 
 input UpdateAccountInput {

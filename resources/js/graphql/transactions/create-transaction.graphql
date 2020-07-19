@@ -1,5 +1,0 @@
-mutation createTransaction($input: CreateTransactionInput!) {
-    createTransaction(input: $input) {
-        id
-    }
-}

@@ -30,8 +30,7 @@
         data() {
             return {
                 headings: [
-                    'Nombre',
-                    'Saldo actual'
+                    'Nombre'
                 ],
                 accounts: [],
                 loading: true
@@ -56,8 +55,7 @@
                 this.accounts = response.data.accounts.data.map(item => {
                     return {
                         id: item.id,
-                        name: item.name,
-                        balance: `$${new Intl.NumberFormat('es-ES').format(item.balance)}`
+                        name: item.name
                     };
                 });
                 this.loading = this.$apollo.loading;

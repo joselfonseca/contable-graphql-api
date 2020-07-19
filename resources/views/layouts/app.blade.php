@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="h-screen antialiased">
@@ -23,8 +24,11 @@
                 </div>
                 <div class="hidden md:block">
                   <div class="ml-10 flex items-baseline">
-                    <router-link to="/accounts" active-class="bg-indigo-900" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700">Cuentas</router-link>
-                    <router-link to="/categories" active-class="bg-indigo-900" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700">Categorías</router-link>
+                    @guest
+                    @else
+                        <router-link to="/accounts" active-class="bg-indigo-900" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700">Cuentas</router-link>
+                        <router-link to="/categories" active-class="bg-indigo-900" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700">Categorías</router-link>
+                    @endguest
                   </div>
                 </div>
               </div>
@@ -32,9 +36,7 @@
                 <div class="ml-4 flex items-center md:ml-6">
                   <div class="ml-3 relative">
                     <div class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid" id="user-menu" aria-label="User menu" aria-haspopup="true">
-                        @auth
-                            {{ Auth::user()->name }}
-                        @endauth
+                        @include('partials.user')
                     </div>
                   </div>
                 </div>

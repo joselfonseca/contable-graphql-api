@@ -15,7 +15,6 @@
         "@tailwindcss/custom-forms": "^0.2",
         "@tailwindcss/ui": "^0.3.1",
         "apollo-boost": "^0.4.9",
-        "axios": "^0.19",
         "cross-env": "^7.0",
         "graphql": "^14.7.0",
         "laravel-mix": "^5.0.1",

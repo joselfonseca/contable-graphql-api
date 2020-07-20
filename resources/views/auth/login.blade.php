@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <x-logo-on-forms action="Login" />
     <x-auth-form>
         <form method="POST" action="{{ route('login') }}">
             @csrf

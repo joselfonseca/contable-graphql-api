@@ -1,6 +1,7 @@
 #import account.graphql
 #import category.graphql
 #import user.graphql
+#import income.graphql
 
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-01-01 13:00:00`."
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
@@ -8,19 +9,5 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
 "A date string with format `Y-m-d`, e.g. `2011-05-23`."
 scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
-type Query {
-    me: User! @auth
-    accounts: [Account!] @paginate(scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
-    account(id: ID! @eq): Account! @find @can(ability: "view", find: "id") @guard(with: ["api", "web"])
-    categories: [Category!] @paginate(scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
-    category(id: ID! @eq): Category! @find @can(ability: "view", find: "id") @guard(with: ["api", "web"])
-}
-
-type Mutation {
-    createAccount(input: CreateAccountInput! @spread): Account @create @inject(context: "user.id", name: "user_id") @guard(with: ["api", "web"])
-    updateAccount(id: ID!, input: UpdateAccountInput! @spread): Account @update @can(ability: "update", find: "id") @guard(with: ["api", "web"])
-    deleteAccount(id: ID!): Account @delete @can(ability: "delete", find: "id") @guard(with: ["api", "web"])
-    createCategory(input: CreateCategoryInput! @spread): Category @create @inject(context: "user.id", name: "user_id") @guard(with: ["api", "web"])
-    updateCategory(id: ID!, input: UpdateCategoryInput! @spread): Category @update @can(ability: "update", find: "id") @guard(with: ["api", "web"])
-    deleteCategory(id: ID!): Category @delete @can(ability: "delete", find: "id") @guard(with: ["api", "web"])
-}
+type Query
+type Mutation

@@ -11,3 +11,14 @@ input CreateCategoryInput {
 input UpdateCategoryInput {
     name: String!
 }
+
+extend type Query {
+    categories: [Category!] @paginate(scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
+    category(id: ID! @eq): Category! @find @can(ability: "view", find: "id") @guard(with: ["api", "web"])
+}
+
+extend type Mutation {
+    createCategory(input: CreateCategoryInput! @spread): Category @create @inject(context: "user.id", name: "user_id") @guard(with: ["api", "web"])
+    updateCategory(id: ID!, input: UpdateCategoryInput! @spread): Category @update @can(ability: "update", find: "id") @guard(with: ["api", "web"])
+    deleteCategory(id: ID!): Category @delete @can(ability: "delete", find: "id") @guard(with: ["api", "web"])
+}

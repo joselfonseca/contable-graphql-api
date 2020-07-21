@@ -1,16 +1,7 @@
 <template>
     <layout>
       <template v-slot:header>
-        <div class="flex justify-between items-center">
-          <h1 class="text-lg font-semibold text-gray-900">
-            Cuentas
-          </h1>
-          <router-link to='/accounts/create'>
-            <button class="btn btn-primary">
-              Crear cuenta
-            </button>
-          </router-link>
-        </div>
+        <simple-header title="Cuentas" button-text="Crear cuenta" button-link='/accounts/create' />
       </template>
       <template v-slot:content>
         <simple-table :headings="headings" :data="accounts" :loading="loading" @editRecord="editRecord" @deleteRecord="deleteRecord"></simple-table>
@@ -19,8 +10,6 @@
 </template>
 
 <script>
-    import Layout from './../../components/common/layout';
-    import SimpleTable from './../../components/tables/simple-table';
     import ACCOUNTS from '../../graphql/accounts/accounts.graphql';
     import DELETE_ACCOUNT from '../../graphql/accounts/delete-account.graphql';
     import Swal from 'sweetalert2/dist/sweetalert2.js'
@@ -35,10 +24,6 @@
                 accounts: [],
                 loading: true
             }
-        },
-        components: {
-            SimpleTable,
-            Layout
         },
         mounted() {
             this.getAccounts();

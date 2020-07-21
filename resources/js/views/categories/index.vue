@@ -1,16 +1,7 @@
 <template>
     <layout>
       <template v-slot:header>
-        <div class="flex justify-between items-center">
-          <h1 class="text-lg font-semibold text-gray-900">
-            Categorías
-          </h1>
-          <router-link to='/categories/create'>
-            <button class="btn btn-primary">
-              Crear categoría
-            </button>
-          </router-link>
-        </div>
+        <simple-header title="Categorías" button-text="Crear categoría" button-link='/categories/create' />
       </template>
       <template v-slot:content>
         <simple-table :headings="headings" :data="categories" :loading="loading" @editRecord="editRecord" @deleteRecord="deleteRecord"></simple-table>
@@ -19,8 +10,6 @@
 </template>
 
 <script>
-    import Layout from './../../components/common/layout';
-    import SimpleTable from './../../components/tables/simple-table';
     import CATEGORIES from '../../graphql/categories/categories.graphql';
     import DELETE_CATEGORY from '../../graphql/categories/delete-category.graphql';
     import Swal from 'sweetalert2/dist/sweetalert2.js'
@@ -35,10 +24,6 @@
                 categories: [],
                 loading: true
             }
-        },
-        components: {
-            SimpleTable,
-            Layout
         },
         mounted() {
             this.getCategories();

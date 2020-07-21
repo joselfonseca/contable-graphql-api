@@ -1,16 +1,7 @@
 <template>
   <layout>
       <template v-slot:header>
-        <div class="flex justify-between items-center">
-          <h1 class="text-lg font-semibold text-gray-900">
-            Crear gasto
-          </h1>
-          <router-link to='/expenses'>
-            <button class="btn btn-primary">
-              Listado de gastos
-            </button>
-          </router-link>
-        </div>
+        <simple-header title="Crear gasto" button-text="Listado de gastos" button-link='/expenses' />
       </template>
       <template v-slot:content>
         <div class="w-full flex justify-center">
@@ -25,15 +16,10 @@
 
 <script>
     import moment from 'moment';
-    import Layout from './../../components/common/layout';
     import CREATE_EXPENSE from './../../graphql/expenses/create-expense.graphql';
     import EXPENSE_SELECT_DATA from './../../graphql/expenses/expenses-data.graphql';
-    import GraphqlErrorToast from './../../components/errors/graphql-error-toast';
-    import Loading from './../../components/common/loading';
-    import SimpleForm from './../../components/forms/simple-form';
 
     export default {
-        components: {GraphqlErrorToast, Loading, Layout, SimpleForm},
         data() {
           return {
             loadingSelects: true,

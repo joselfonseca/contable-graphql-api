@@ -1,16 +1,7 @@
 <template>
     <layout>
       <template v-slot:header>
-        <div class="flex justify-between items-center">
-          <h1 class="text-lg font-semibold text-gray-900">
-            Gastos
-          </h1>
-          <router-link to='/expenses/create'>
-            <button class="btn btn-primary">
-              Crear gasto
-            </button>
-          </router-link>
-        </div>
+        <simple-header title="Gastos" button-text="Crear gasto" button-link='/expenses/create' />
       </template>
       <template v-slot:content>
         <simple-table :headings="headings" :data="expenses" :loading="loading" @editRecord="editRecord" @deleteRecord="deleteRecord"></simple-table>
@@ -20,8 +11,6 @@
 
 <script>
     import moment from 'moment';
-    import Layout from './../../components/common/layout';
-    import SimpleTable from './../../components/tables/simple-table';
     import EXPENSES from '../../graphql/expenses/expenses.graphql';
     import DELETE_EXPENSE from '../../graphql/expenses/delete-expense.graphql';
     import Swal from 'sweetalert2/dist/sweetalert2.js'
@@ -39,10 +28,6 @@
                 expenses: [],
                 loading: true
             }
-        },
-        components: {
-            SimpleTable,
-            Layout
         },
         mounted() {
             this.getExpenses();

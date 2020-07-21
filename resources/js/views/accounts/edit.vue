@@ -1,16 +1,7 @@
 <template>
     <layout>
       <template v-slot:header>
-        <div class="flex justify-between items-center">
-          <h1 class="text-lg font-semibold text-gray-900">
-            Editar cuenta
-          </h1>
-          <router-link to='/accounts'>
-            <button class="btn btn-primary">
-              Listado de cuentas
-            </button>
-          </router-link>
-        </div>
+        <simple-header title="Editar cuenta" button-text="Listado de cuentas" button-link='/accounts' />
       </template>
       <template v-slot:content>
         <div class="w-full flex justify-center">
@@ -24,15 +15,10 @@
 </template>
 
 <script>
-    import Layout from './../../components/common/layout';
     import GET_ACCOUNT from './../../graphql/accounts/account.graphql';
     import UPDATE_ACCOUNT from './../../graphql/accounts/update-account.graphql';
-    import GraphqlErrorToast from './../../components/errors/graphql-error-toast';
-    import Loading from './../../components/common/loading';
-    import SimpleForm from './../../components/forms/simple-form';
 
     export default {
-        components: {GraphqlErrorToast, Loading, Layout, SimpleForm},
         data() {
             return {
                 form: {

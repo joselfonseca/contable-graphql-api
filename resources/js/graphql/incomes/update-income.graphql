@@ -1,0 +1,5 @@
+mutation updateIncome($id: ID!, $input: UpdateIncomeInput!){
+    updateIncome(id: $id, input: $input) {
+        id
+    }
+}

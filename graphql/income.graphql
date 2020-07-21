@@ -1,11 +1,41 @@
 type Income {
     id: ID!
-    user: User! @belongsTo
-    category: Category! @belongsTo
-    account: Account! @belongsTo
+    category_id: ID!
+    account_id: ID!
     date: Date!
     amount: Float!
     description: String
     created_at: DateTimeTz!
     updated_at: DateTimeTz!
+    user: User! @belongsTo
+    category: Category! @belongsTo
+    account: Account! @belongsTo
+}
+
+input CreateIncomeInput {
+    category_id: ID!
+    account_id: ID!
+    date: Date!
+    amount: Float!
+    description: String
+}
+
+input UpdateIncomeInput {
+    category_id: ID!
+    account_id: ID!
+    date: Date!
+    amount: Float!
+    description: String
+}
+
+
+extend type Query {
+    incomes: [Income!] @paginate(type: "connection", scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
+    income(id: ID! @eq): Income! @find @can(ability: "view", find: "id") @guard(with: ["api", "web"])
+}
+
+extend type Mutation {
+    createIncome(input: CreateIncomeInput! @spread): Income @create @inject(context: "user.id", name: "user_id") @guard(with: ["api", "web"])
+    updateIncome(id: ID!, input: UpdateIncomeInput! @spread): Income @update @can(ability: "update", find: "id") @guard(with: ["api", "web"])
+    deleteIncome(id: ID!): Income @delete @can(ability: "delete", find: "id") @guard(with: ["api", "web"])
 }

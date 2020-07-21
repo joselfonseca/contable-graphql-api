@@ -10,6 +10,7 @@
               <numeric-field :field="field" v-if="field.type === 'numeric'" @updated="syncValue"></numeric-field>
               <money-field :field="field" v-if="field.type === 'money'" @updated="syncValue"></money-field>
               <select-field :field="field" v-if="field.type === 'select'" @updated="syncValue"></select-field>
+              <date-field :field="field" v-if="field.type === 'date'" @updated="syncValue"></date-field>
             </div>
           </div>
         </div>
@@ -28,8 +29,9 @@ import TextField from './fields/text-field';
 import NumericField from './fields/numeric-field';
 import MoneyField from './fields/money-field';
 import SelectField from './fields/select-field';
+import DateField from './fields/date-field';
 export default {
-  components: { TextField, NumericField, MoneyField, SelectField },
+  components: { TextField, NumericField, MoneyField, SelectField, DateField },
   props: {
     fields: {
       type: Array,

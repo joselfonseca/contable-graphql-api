@@ -1,0 +1,10 @@
+query incomeSelectData {
+    accounts: accounts {
+        id
+        name
+    }
+    categories: categories {
+        id
+        name
+    }
+}

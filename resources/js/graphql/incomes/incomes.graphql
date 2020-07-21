@@ -1,0 +1,23 @@
+query incomes($first: Int!, $after: String) {
+    incomes(first: $first, after: $after) {
+        pageInfo {
+            hasNextPage
+            total
+        }
+        edges {
+            cursor
+            node {
+                id
+                category {
+                    name
+                }
+                account {
+                    name
+                }
+                date
+                amount
+                description
+            }
+        }
+    }
+}

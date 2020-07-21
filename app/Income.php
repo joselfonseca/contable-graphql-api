@@ -30,4 +30,12 @@ class Income extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function scopeByLoggedInUser($query)
+    {
+        if (! request()->user()) {
+            return $query;
+        }
+        return $query->where('user_id', request()->user()->id);
+    }
 }

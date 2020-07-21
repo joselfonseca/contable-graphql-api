@@ -1,0 +1,10 @@
+query income($id: ID!) {
+    income(id: $id) {
+        id
+        category_id
+        account_id
+        date
+        amount
+        description
+    }
+}

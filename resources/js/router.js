@@ -9,6 +9,10 @@ import Categories from './views/categories/index';
 import CreateCategory from './views/categories/create';
 import EditCategory from './views/categories/edit';
 
+import Incomes from './views/incomes/index';
+import CreateIncome from './views/incomes/create';
+import EditIncome from './views/incomes/edit';
+
 const routes = [
     {
         path: '/accounts',
@@ -33,6 +37,18 @@ const routes = [
     {
         path: '/categories/:id/edit',
         component: EditCategory
+    },
+    {
+      path: '/incomes',
+      component: Incomes
+    },
+    {
+      path: '/incomes/create',
+      component: CreateIncome
+    },
+    {
+      path: '/incomes/:id/edit',
+      component: EditIncome
     },
     {
         path: '/',

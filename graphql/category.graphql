@@ -15,7 +15,7 @@ input UpdateCategoryInput {
 }
 
 extend type Query {
-    categories: [Category!] @all(scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
+    categories(orderBy: _ @orderBy(columns: ["created_at", "name"])): [Category!] @all(scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
     category(id: ID! @eq): Category! @find @can(ability: "view", find: "id") @guard(with: ["api", "web"])
 }
 

@@ -30,7 +30,7 @@ input UpdateIncomeInput {
 
 
 extend type Query {
-    incomes: [Income!] @paginate(type: "connection", scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
+    incomes(orderBy: _ @orderBy(columns: ["created_at"])): [Income!] @paginate(type: "connection", scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
     income(id: ID! @eq): Income! @find @can(ability: "view", find: "id") @guard(with: ["api", "web"])
 }
 

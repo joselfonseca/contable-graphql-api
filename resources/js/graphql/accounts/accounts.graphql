@@ -1,5 +1,8 @@
 query accounts {
-    accounts{
+    accounts(orderBy: {
+        field: NAME,
+        order: ASC
+    }) {
         id
         name
     }

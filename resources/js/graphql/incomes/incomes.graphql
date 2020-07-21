@@ -1,5 +1,8 @@
 query incomes($first: Int!, $after: String) {
-    incomes(first: $first, after: $after) {
+    incomes(first: $first, after: $after, orderBy: {
+        field: CREATED_AT,
+        order: DESC
+    }) {
         pageInfo {
             hasNextPage
             total

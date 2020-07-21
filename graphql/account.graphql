@@ -15,7 +15,7 @@ input UpdateAccountInput {
 }
 
 extend type Query {
-    accounts: [Account!] @all(scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
+    accounts(orderBy: _ @orderBy(columns: ["created_at", "name"])): [Account!] @all(scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
     account(id: ID! @eq): Account! @find @can(ability: "view", find: "id") @guard(with: ["api", "web"])
 }
 

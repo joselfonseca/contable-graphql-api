@@ -1,5 +1,8 @@
 query categories {
-    categories {
+    categories(orderBy: {
+        field: NAME,
+        order: ASC
+    }) {
         id
         name
     }

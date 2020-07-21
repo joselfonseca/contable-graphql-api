@@ -1,0 +1,41 @@
+type Expense {
+    id: ID!
+    category_id: ID!
+    account_id: ID!
+    date: Date!
+    amount: Float!
+    description: String
+    created_at: DateTimeTz!
+    updated_at: DateTimeTz!
+    user: User! @belongsTo
+    category: Category! @belongsTo
+    account: Account! @belongsTo
+}
+
+input CreateExpenseInput {
+    category_id: ID!
+    account_id: ID!
+    date: Date!
+    amount: Float!
+    description: String
+}
+
+input UpdateExpenseInput {
+    category_id: ID!
+    account_id: ID!
+    date: Date!
+    amount: Float!
+    description: String
+}
+
+
+extend type Query {
+    expenses(orderBy: _ @orderBy(columns: ["created_at"])): [Expense!] @paginate(type: "connection", scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
+    expense(id: ID! @eq): Expense! @find @can(ability: "view", find: "id") @guard(with: ["api", "web"])
+}
+
+extend type Mutation {
+    createExpense(input: CreateExpenseInput! @spread): Expense @create @inject(context: "user.id", name: "user_id") @guard(with: ["api", "web"])
+    updateExpense(id: ID!, input: UpdateExpenseInput! @spread): Expense @update @can(ability: "update", find: "id") @guard(with: ["api", "web"])
+    deleteExpense(id: ID!): Expense @delete @can(ability: "delete", find: "id") @guard(with: ["api", "web"])
+}

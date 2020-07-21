@@ -1,0 +1,10 @@
+query expense($id: ID!) {
+    expense(id: $id) {
+        id
+        category_id
+        account_id
+        date
+        amount
+        description
+    }
+}

@@ -13,6 +13,10 @@ import Incomes from './views/incomes/index';
 import CreateIncome from './views/incomes/create';
 import EditIncome from './views/incomes/edit';
 
+import Expenses from './views/expenses/index';
+import CreateExpense from './views/expenses/create';
+import EditExpense from './views/expenses/edit';
+
 const routes = [
     {
         path: '/accounts',
@@ -49,6 +53,18 @@ const routes = [
     {
       path: '/incomes/:id/edit',
       component: EditIncome
+    },
+    {
+      path: '/expenses',
+      component: Expenses
+    },
+    {
+      path: '/expenses/create',
+      component: CreateExpense
+    },
+    {
+      path: '/expenses/:id/edit',
+      component: EditExpense
     },
     {
         path: '/',

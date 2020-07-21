@@ -1,0 +1,26 @@
+query expenses($first: Int!, $after: String) {
+    expenses(first: $first, after: $after, orderBy: {
+        field: CREATED_AT,
+        order: DESC
+    }) {
+        pageInfo {
+            hasNextPage
+            total
+        }
+        edges {
+            cursor
+            node {
+                id
+                category {
+                    name
+                }
+                account {
+                    name
+                }
+                date
+                amount
+                description
+            }
+        }
+    }
+}

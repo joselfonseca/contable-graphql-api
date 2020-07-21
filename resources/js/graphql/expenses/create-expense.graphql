@@ -1,0 +1,5 @@
+mutation createExpense($input: CreateExpenseInput!){
+    createExpense(input: $input) {
+        id
+    }
+}

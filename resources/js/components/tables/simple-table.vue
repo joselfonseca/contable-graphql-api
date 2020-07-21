@@ -5,18 +5,23 @@
           <table class="min-w-full">
             <thead>
               <tr>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"v-for="heading in headings">{{heading}}</th>
+                <th v-for="heading in headings" :key="heading" class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{heading}}</th>
                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
               </tr>
             </thead>
             <tbody>
-              <tr class="bg-white" v-if="!loading" v-for="item in data" :key="item.id">
-                <td v-if="columnKey != 'id'" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900" v-for="column, columnKey in item">
+              <tr v-if="!loading" class="bg-white" v-for="item in data" :key="item.id">
+                <td v-if="columnKey != 'id'" v-for="column, columnKey in item" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900">
                   {{ column }}
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
                   <button class="btn btn-primary" @click="editRecord(item)">Editar</button>
                   <button class="btn btn-danger" @click="deleteRecord(item)">Eliminar</button>
+                </td>
+              </tr>
+              <tr v-if="data.length === 0" class="bg-white">
+                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900 text-center" :colspan="headings.length + 1">
+                  Sin datos para mostrar
                 </td>
               </tr>
             </tbody>

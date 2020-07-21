@@ -1,8 +1,8 @@
 type Account {
     id: ID!
     name: String!
-    created_at: DateTime!
-    updated_at: DateTime!
+    created_at: DateTimeTz!
+    updated_at: DateTimeTz!
     user: User! @belongsTo
 }
 
@@ -15,7 +15,7 @@ input UpdateAccountInput {
 }
 
 extend type Query {
-    accounts: [Account!] @paginate(scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
+    accounts: [Account!] @all(scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
     account(id: ID! @eq): Account! @find @can(ability: "view", find: "id") @guard(with: ["api", "web"])
 }
 

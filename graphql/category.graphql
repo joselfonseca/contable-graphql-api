@@ -2,6 +2,8 @@ type Category {
     id: ID!
     name: String!
     user: User! @belongsTo
+    created_at: DateTimeTz!
+    updated_at: DateTimeTz!
 }
 
 input CreateCategoryInput {
@@ -13,7 +15,7 @@ input UpdateCategoryInput {
 }
 
 extend type Query {
-    categories: [Category!] @paginate(scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
+    categories: [Category!] @all(scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
     category(id: ID! @eq): Category! @find @can(ability: "view", find: "id") @guard(with: ["api", "web"])
 }
 

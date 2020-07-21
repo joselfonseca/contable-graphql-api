@@ -1,3 +1,11 @@
 type Income {
     id: ID!
+    user: User! @belongsTo
+    category: Category! @belongsTo
+    account: Account! @belongsTo
+    date: Date!
+    amount: Float!
+    description: String
+    created_at: DateTimeTz!
+    updated_at: DateTimeTz!
 }

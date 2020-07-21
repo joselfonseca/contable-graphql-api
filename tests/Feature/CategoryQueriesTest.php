@@ -21,25 +21,15 @@ class CategoryQueriesTest extends TestCase
         Passport::actingAs($user);
         $response = $this->graphQL('
             query {
-                categories(first: 20) {
-                    data {
-                        id
-                        name
-                    }
-                    paginatorInfo {
-                        total
-                    }
+                categories{
+                    id
+                    name
                 }
             }
         ');
         $response->assertJson([
             'data' => [
-                'categories' => [
-                    'data' => [],
-                    'paginatorInfo' => [
-                        'total' => 3
-                    ]
-                ]
+                'categories' => []
             ]
         ]);
     }

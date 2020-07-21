@@ -46,13 +46,9 @@
         methods: {
             async getAccounts() {
                 const response = await this.$apollo.query({
-                    query: ACCOUNTS,
-                    variables: {
-                        first: 20,
-                        page: 1
-                    }
+                    query: ACCOUNTS
                 });
-                this.accounts = response.data.accounts.data.map(item => {
+                this.accounts = response.data.accounts.map(item => {
                     return {
                         id: item.id,
                         name: item.name

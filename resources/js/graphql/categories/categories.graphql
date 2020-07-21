@@ -1,8 +1,6 @@
-query categories($first: Int!, $page: Int) {
-    categories(first: $first, page: $page) {
-        data {
-            id
-            name
-        }
+query categories {
+    categories {
+        id
+        name
     }
 }

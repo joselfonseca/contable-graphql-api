@@ -46,13 +46,9 @@
         methods: {
             async getCategories() {
                 const response = await this.$apollo.query({
-                    query: CATEGORIES,
-                    variables: {
-                        first: 20,
-                        page: 1
-                    }
+                    query: CATEGORIES
                 });
-                this.categories = response.data.categories.data.map(item => {
+                this.categories = response.data.categories.map(item => {
                     return {
                         id: item.id,
                         name: item.name

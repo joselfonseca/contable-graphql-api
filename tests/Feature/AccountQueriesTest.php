@@ -21,25 +21,15 @@ class AccountQueriesTest extends TestCase
         Passport::actingAs($user);
         $response = $this->graphQL('
             query {
-                accounts(first: 20) {
-                    data {
-                        id
-                        name
-                    }
-                    paginatorInfo {
-                        total
-                    }
+                accounts {
+                    id
+                    name
                 }
             }
         ');
         $response->assertJson([
             'data' => [
-                'accounts' => [
-                    'data' => [],
-                    'paginatorInfo' => [
-                        'total' => 3
-                    ]
-                ]
+                'accounts' => []
             ]
         ]);
     }

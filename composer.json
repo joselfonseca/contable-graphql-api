@@ -17,7 +17,8 @@
         "laravel/telescope": "^3.2",
         "laravel/tinker": "^2.0",
         "mll-lab/graphql-php-scalars": "^3.0",
-        "nuwave/lighthouse": "^4.10"
+        "nuwave/lighthouse": "^4.10",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

@@ -1,7 +1,6 @@
 type Income {
     id: ID!
     category_id: ID!
-    account_id: ID!
     date: Date!
     amount: Float!
     description: String
@@ -9,12 +8,10 @@ type Income {
     updated_at: DateTimeTz!
     user: User! @belongsTo
     category: Category! @belongsTo
-    account: Account! @belongsTo
 }
 
 input CreateIncomeInput {
     category_id: ID!
-    account_id: ID!
     date: Date!
     amount: Float!
     description: String
@@ -22,7 +19,6 @@ input CreateIncomeInput {
 
 input UpdateIncomeInput {
     category_id: ID!
-    account_id: ID!
     date: Date!
     amount: Float!
     description: String

@@ -29,11 +29,11 @@
               fields: [
                 {
                   type: 'select',
-                  name: 'account_id',
-                  placeholder: 'Cuenta',
+                  name: 'payment_method_id',
+                  placeholder: 'Medio de pago',
                   required: true,
                   value: null,
-                  label: 'Cuenta',
+                  label: 'Medio de pago',
                   disabled: false
                 },
                 {
@@ -111,7 +111,7 @@
               const response = await this.$apollo.query({
                   query: EXPENSE_SELECT_DATA
               });
-              this.form.fields[0].options = response.data.accounts.map(item => {
+              this.form.fields[0].options = response.data.paymentMethods.map(item => {
                 return {
                   id: item.id,
                   value: item.name

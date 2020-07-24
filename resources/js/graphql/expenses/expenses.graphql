@@ -14,7 +14,7 @@ query expenses($first: Int!, $after: String) {
                 category {
                     name
                 }
-                account {
+                paymentMethod {
                     name
                 }
                 date

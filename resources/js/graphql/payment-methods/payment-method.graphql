@@ -1,0 +1,6 @@
+query paymentMethod($id: ID!) {
+    paymentMethod(id: $id) {
+        id
+        name
+    }
+}

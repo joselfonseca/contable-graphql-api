@@ -2,26 +2,26 @@
 
 namespace Tests\Feature;
 
-use App\Account;
+use App\PaymentMethod;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
-class AccountQueriesTest extends TestCase
+class PaymentMethodQueriesTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_queries_accounts()
+    public function test_it_queries_payment_methods()
     {
         $user = factory(User::class)->create();
-        factory(Account::class, 3)->create([
+        factory(PaymentMethod::class, 3)->create([
             'user_id' => $user->id
         ]);
         Passport::actingAs($user);
         $response = $this->graphQL('
             query {
-                accounts {
+                paymentMethods {
                     id
                     name
                 }
@@ -29,22 +29,22 @@ class AccountQueriesTest extends TestCase
         ');
         $response->assertJson([
             'data' => [
-                'accounts' => []
+                'paymentMethods' => []
             ]
         ]);
     }
 
-    public function test_it_queries_an_account()
+    public function test_it_queries_a_payment_method()
     {
         $user = factory(User::class)->create();
-        $accounts = factory(Account::class, 3)->create([
+        $paymentMethods = factory(PaymentMethod::class, 3)->create([
             'user_id' => $user->id
         ]);
         Passport::actingAs($user);
-        $account = $accounts->shuffle()->first();
+        $paymentMethod = $paymentMethods->shuffle()->first();
         $response = $this->graphQL('
             query {
-                account(id: '.$account->id.') {
+                paymentMethod(id: '.$paymentMethod->id.') {
                     id
                     name
                 }
@@ -52,25 +52,25 @@ class AccountQueriesTest extends TestCase
         ');
         $response->assertJson([
             'data' => [
-                'account' => [
-                    'id' => $account->id,
-                    'name' => $account->name
+                'paymentMethod' => [
+                    'id' => $paymentMethod->id,
+                    'name' => $paymentMethod->name
                 ]
             ]
         ]);
     }
 
-    public function test_it_cant_query_an_account_not_owned()
+    public function test_it_cant_query_a_payment_method_not_owned()
     {
         $user = factory(User::class)->create();
-        factory(Account::class, 3)->create([
+        factory(PaymentMethod::class, 3)->create([
             'user_id' => $user->id
         ]);
-        $account = factory(Account::class)->create();
+        $paymentMethod = factory(PaymentMethod::class)->create();
         Passport::actingAs($user);
         $response = $this->graphQL('
             query {
-                account(id: '.$account->id.') {
+                paymentMethod(id: '.$paymentMethod->id.') {
                     id
                     name
                 }
@@ -79,7 +79,7 @@ class AccountQueriesTest extends TestCase
         $response->assertJson([
             'errors' => [
                 [
-                    'message' => 'You are not authorized to access account'
+                    'message' => 'You are not authorized to access paymentMethod'
                 ]
             ]
         ]);

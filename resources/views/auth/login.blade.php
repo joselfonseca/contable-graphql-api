@@ -6,7 +6,7 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <x-form-field name="email" label="E-Mail Address" type="email" />
-            <x-form-field name="password" label="Passsword" type="password" />
+            <x-form-field name="password" label="Password" type="password" />
             <div class="mt-6 flex items-center justify-between">
               <div class="flex items-center">
                 <input id="remember" name="remember" {{ old('remember') ? 'checked' : '' }} type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">

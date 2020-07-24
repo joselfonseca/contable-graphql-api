@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Account;
+use App\PaymentMethod;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class AccountPolicy
+class PaymentMethodPolicy
 {
     use HandlesAuthorization;
 
@@ -25,12 +25,12 @@ class AccountPolicy
      * Determine whether the user can view the account.
      *
      * @param  \App\User  $user
-     * @param  \App\Account  $account
+     * @param  \App\PaymentMethod  $payment_method
      * @return mixed
      */
-    public function view(User $user, Account $account)
+    public function view(User $user, PaymentMethod $payment_method)
     {
-        return $user->id === $account->user_id;
+        return $user->id === $payment_method->user_id;
     }
 
     /**
@@ -48,47 +48,47 @@ class AccountPolicy
      * Determine whether the user can update the account.
      *
      * @param  \App\User  $user
-     * @param  \App\Account  $account
+     * @param  \App\PaymentMethod  $payment_method
      * @return mixed
      */
-    public function update(User $user, Account $account)
+    public function update(User $user, PaymentMethod $payment_method)
     {
-        return $user->id === $account->user_id;
+        return $user->id === $payment_method->user_id;
     }
 
     /**
      * Determine whether the user can delete the account.
      *
      * @param  \App\User  $user
-     * @param  \App\Account  $account
+     * @param  \App\PaymentMethod  $payment_method
      * @return mixed
      */
-    public function delete(User $user, Account $account)
+    public function delete(User $user, PaymentMethod $payment_method)
     {
-        return $user->id === $account->user_id;
+        return $user->id === $payment_method->user_id;
     }
 
     /**
      * Determine whether the user can restore the account.
      *
      * @param  \App\User  $user
-     * @param  \App\Account  $account
+     * @param  \App\PaymentMethod  $payment_method
      * @return mixed
      */
-    public function restore(User $user, Account $account)
+    public function restore(User $user, PaymentMethod $payment_method)
     {
-        return $user->id === $account->user_id;
+        return $user->id === $payment_method->user_id;
     }
 
     /**
      * Determine whether the user can permanently delete the account.
      *
      * @param  \App\User  $user
-     * @param  \App\Account  $account
+     * @param  \App\PaymentMethod  $payment_method
      * @return mixed
      */
-    public function forceDelete(User $user, Account $account)
+    public function forceDelete(User $user, PaymentMethod $payment_method)
     {
-        return $user->id === $account->user_id;
+        return $user->id === $payment_method->user_id;
     }
 }

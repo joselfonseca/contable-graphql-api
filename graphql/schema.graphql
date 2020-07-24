@@ -1,4 +1,4 @@
-#import account.graphql
+#import payment_method.graphql
 #import category.graphql
 #import user.graphql
 #import income.graphql

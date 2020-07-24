@@ -13,7 +13,7 @@ class Expense extends Model
     protected $fillable = [
         'user_id',
         'category_id',
-        'account_id',
+        'payment_method_id',
         'date',
         'amount',
         'description'
@@ -23,7 +23,7 @@ class Expense extends Model
         'id' => 'Int',
         'user_id' => 'Int',
         'category_id' => 'Int',
-        'account_id' => 'Int'
+        'payment_method_id' => 'Int'
     ];
 
     protected $dates = [
@@ -37,9 +37,9 @@ class Expense extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function account() : BelongsTo
+    public function paymentMethod() : BelongsTo
     {
-        return $this->belongsTo(Account::class);
+        return $this->belongsTo(PaymentMethod::class);
     }
 
     public function category() : BelongsTo

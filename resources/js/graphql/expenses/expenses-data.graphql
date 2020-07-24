@@ -1,5 +1,5 @@
 query expenseSelectData {
-    accounts: accounts(orderBy: {
+    paymentMethods: paymentMethods(orderBy: {
         field: NAME,
         order: ASC
     }) {

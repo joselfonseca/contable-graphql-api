@@ -1,9 +1,9 @@
 
 import VueRouter from "vue-router";
 
-import Accounts from './views/accounts/index';
-import CreateAccount from './views/accounts/create';
-import EditAccount from './views/accounts/edit';
+import PaymentMethods from './views/payment-methods/index';
+import CreatePaymentMethod from './views/payment-methods/create';
+import EditPaymentMethod from './views/payment-methods/edit';
 
 import Categories from './views/categories/index';
 import CreateCategory from './views/categories/create';
@@ -19,16 +19,16 @@ import EditExpense from './views/expenses/edit';
 
 const routes = [
     {
-        path: '/accounts',
-        component: Accounts
+        path: '/payment-methods',
+        component: PaymentMethods
     },
     {
-        path: '/accounts/create',
-        component: CreateAccount
+        path: '/payment-methods/create',
+        component: CreatePaymentMethod
     },
     {
-        path: '/accounts/:id/edit',
-        component: EditAccount
+        path: '/payment-methods/:id/edit',
+        component: EditPaymentMethod
     },
     {
         path: '/categories',
@@ -68,7 +68,7 @@ const routes = [
     },
     {
         path: '/',
-        redirect: '/accounts'
+        redirect: '/incomes'
     }
 ];
 

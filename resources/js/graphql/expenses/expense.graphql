@@ -2,7 +2,7 @@ query expense($id: ID!) {
     expense(id: $id) {
         id
         category_id
-        account_id
+        payment_method_id
         date
         amount
         description

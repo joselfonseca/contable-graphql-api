@@ -13,7 +13,6 @@ class Income extends Model
     protected $fillable = [
         'user_id',
         'category_id',
-        'account_id',
         'date',
         'amount',
         'description'
@@ -35,11 +34,6 @@ class Income extends Model
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function account() : BelongsTo
-    {
-        return $this->belongsTo(Account::class);
     }
 
     public function category() : BelongsTo

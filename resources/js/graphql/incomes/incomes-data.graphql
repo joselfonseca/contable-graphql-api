@@ -1,11 +1,4 @@
 query incomeSelectData {
-    accounts: accounts(orderBy: {
-        field: NAME,
-        order: ASC
-    }) {
-        id
-        name
-    }
     categories: categories(orderBy: {
         field: NAME,
         order: ASC

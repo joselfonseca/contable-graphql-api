@@ -22,7 +22,8 @@
                 headings: [
                     'Fecha',
                     'Categoría',
-                    'Cuenta',
+                    'Medio de pago',
+                    'Descripción',
                     'Valor'
                 ],
                 expenses: [],
@@ -45,7 +46,8 @@
                         id: item.node.id,
                         date: moment(item.node.date).format('MM/DD/YYYY'),
                         category: item.node.category.name,
-                        account: item.node.account.name,
+                        paymentMethod: item.node.paymentMethod.name,
+                        description: item.node.description,
                         value: new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(item.node.amount),
                     };
                 });

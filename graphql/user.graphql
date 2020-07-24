@@ -4,6 +4,6 @@ type User {
     email: String!
     created_at: DateTimeTz!
     updated_at: DateTimeTz!
-    accounts: [Account!] @hasMany
+    payment_methods: [PaymentMethod!] @hasMany
     categories: [Category!] @hasMany
 }

@@ -1,0 +1,5 @@
+mutation updatePaymentMethod($id: ID!, $input: UpdatePaymentMethodInput!){
+    updatePaymentMethod(id: $id, input: $input) {
+        id
+    }
+}

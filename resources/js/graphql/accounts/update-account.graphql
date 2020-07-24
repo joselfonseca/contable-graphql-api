@@ -1,5 +1,0 @@
-mutation updateAccount($id: ID!, $input: UpdateAccountInput!){
-    updateAccount(id: $id, input: $input) {
-        id
-    }
-}

@@ -29,15 +29,6 @@
               fields: [
                 {
                   type: 'select',
-                  name: 'account_id',
-                  placeholder: 'Cuenta',
-                  required: true,
-                  value: null,
-                  label: 'Cuenta',
-                  disabled: false
-                },
-                {
-                  type: 'select',
                   name: 'category_id',
                   placeholder: 'Categoría',
                   required: true,
@@ -111,13 +102,7 @@
               const response = await this.$apollo.query({
                   query: INCOME_SELECT_DATA
               });
-              this.form.fields[0].options = response.data.accounts.map(item => {
-                return {
-                  id: item.id,
-                  value: item.name
-                }
-              });
-              this.form.fields[1].options = response.data.categories.map(item => {
+              this.form.fields[0].options = response.data.categories.map(item => {
                 return {
                   id: item.id,
                   value: item.name

@@ -14,9 +14,6 @@ query incomes($first: Int!, $after: String) {
                 category {
                     name
                 }
-                account {
-                    name
-                }
                 date
                 amount
                 description

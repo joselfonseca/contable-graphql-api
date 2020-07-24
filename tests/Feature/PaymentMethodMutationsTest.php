@@ -2,22 +2,22 @@
 
 namespace Tests\Feature;
 
-use App\Account;
+use App\PaymentMethod;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
-class AccountMutationsTest extends TestCase
+class PaymentMethodMutationsTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_it_creates_an_account()
+    public function test_it_creates_an_payment_method()
     {
         $user = factory(User::class)->create();
         Passport::actingAs($user);
         $response = $this->graphQL('mutation {
-            createAccount(input: {
+            createPaymentMethod(input: {
                 name: "wallet"
             }) {
                 name
@@ -29,7 +29,7 @@ class AccountMutationsTest extends TestCase
         }');
         $response->assertJson([
             'data' => [
-                'createAccount' => [
+                'createPaymentMethod' => [
                     'name' => 'wallet',
                     'user' => [
                         'id' => $user->id,
@@ -38,23 +38,23 @@ class AccountMutationsTest extends TestCase
                 ]
             ]
         ]);
-        $this->assertDatabaseHas('accounts', [
+        $this->assertDatabaseHas('payment_methods', [
             'name' => 'wallet',
             'user_id' => $user->id
         ]);
     }
 
-    public function test_it_can_update_an_account()
+    public function test_it_can_update_a_payment_method()
     {
         $user = factory(User::class)->create();
-        $account = factory(Account::class)->create([
+        $paymentMethod = factory(PaymentMethod::class)->create([
             'name' => 'Wallet',
             'user_id' => $user->id
         ]);
         Passport::actingAs($user);
         $response = $this->graphQL('
             mutation {
-                updateAccount(id: '.$account->id.', input: {
+                updatePaymentMethod(id: '.$paymentMethod->id.', input: {
                     name: "Savings"
                 }) {
                     id
@@ -64,31 +64,31 @@ class AccountMutationsTest extends TestCase
         ');
         $response->assertJson([
             'data' => [
-                'updateAccount' => [
-                    'id' => $account->id,
+                'updatePaymentMethod' => [
+                    'id' => $paymentMethod->id,
                     'name' => 'Savings'
                 ]
             ]
         ]);
-        $this->assertDatabaseHas('accounts', [
+        $this->assertDatabaseHas('payment_methods', [
             'user_id' => $user->id,
             'name' => 'Savings',
-            'id' => $account->id
+            'id' => $paymentMethod->id
         ]);
     }
 
-    public function test_it_cant_update_an_account_when_not_owner()
+    public function test_it_cant_update_a_payment_method_when_not_owner()
     {
         $user = factory(User::class)->create();
         $user2 = factory(User::class)->create();
-        $account = factory(Account::class)->create([
+        $paymentMethod = factory(PaymentMethod::class)->create([
             'name' => 'Wallet',
             'user_id' => $user->id
         ]);
         Passport::actingAs($user2);
         $response = $this->graphQL('
             mutation {
-                updateAccount(id: '.$account->id.', input: {
+                updatePaymentMethod(id: '.$paymentMethod->id.', input: {
                     name: "Savings"
                 }) {
                     id
@@ -99,40 +99,40 @@ class AccountMutationsTest extends TestCase
         $response->assertJson([
             'errors' => [
                 [
-                    'message' => 'You are not authorized to access updateAccount'
+                    'message' => 'You are not authorized to access updatePaymentMethod'
                 ]
             ]
         ]);
-        $this->assertDatabaseMissing('accounts', [
+        $this->assertDatabaseMissing('payment_methods', [
             'user_id' => $user->id,
             'name' => 'Savings',
-            'id' => $account->id
+            'id' => $paymentMethod->id
         ]);
     }
 
-    public function test_it_can_delete_an_account()
+    public function test_it_can_delete_a_payment_method()
     {
         $user = factory(User::class)->create();
-        $account = factory(Account::class)->create([
+        $paymentMethod = factory(PaymentMethod::class)->create([
             'name' => 'Wallet',
             'user_id' => $user->id
         ]);
         Passport::actingAs($user);
         $response = $this->graphQL('
             mutation {
-                deleteAccount(id: '.$account->id.') {
+                deletePaymentMethod(id: '.$paymentMethod->id.') {
                     id
                 }
             }
         ');
         $response->assertJson([
             'data' => [
-                'deleteAccount' => [
-                    'id' => $account->id
+                'deletePaymentMethod' => [
+                    'id' => $paymentMethod->id
                 ]
             ]
         ]);
-        $deletedAccount = $account->fresh();
-        $this->assertNotNull($deletedAccount->deleted_at);
+        $deletedPaymentMethod = $paymentMethod->fresh();
+        $this->assertNotNull($deletedPaymentMethod->deleted_at);
     }
 }

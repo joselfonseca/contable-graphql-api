@@ -17,7 +17,7 @@ class CreateExpensesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('account_id');
+            $table->unsignedBigInteger('payment_method_id');
             $table->date('date');
             $table->decimal('amount', 15, 2);
             $table->longText('description')->nullable();
@@ -25,7 +25,7 @@ class CreateExpensesTable extends Migration
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
         });
     }
 

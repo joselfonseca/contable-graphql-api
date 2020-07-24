@@ -15,6 +15,10 @@ class CreateDefaultCategories
         'Otros'
     ];
 
+    public $payment_methods = [
+        'Efectivo'
+    ];
+
     /**
      * Handle the event.
      *
@@ -27,6 +31,11 @@ class CreateDefaultCategories
         collect($this->categories)->each(function ($category) use ($user) {
             $user->categories()->create([
                 'name' => $category
+            ]);
+        });
+        collect($this->payment_methods)->each(function ($payment_method) use ($user) {
+            $user->paymentMethods()->create([
+                'name' => $payment_method
             ]);
         });
     }

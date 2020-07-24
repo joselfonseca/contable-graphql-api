@@ -1,0 +1,26 @@
+type PaymentMethod {
+    id: ID!
+    name: String!
+    created_at: DateTimeTz!
+    updated_at: DateTimeTz!
+    user: User! @belongsTo
+}
+
+input CreatePaymentMethodInput {
+    name: String!
+}
+
+input UpdatePaymentMethodInput {
+    name: String!
+}
+
+extend type Query {
+    paymentMethods(orderBy: _ @orderBy(columns: ["created_at", "name"])): [PaymentMethod!] @all(scopes: ["byLoggedInUser"]) @guard(with: ["api", "web"])
+    paymentMethod(id: ID! @eq): PaymentMethod! @find @can(ability: "view", find: "id") @guard(with: ["api", "web"])
+}
+
+extend type Mutation {
+    createPaymentMethod(input: CreatePaymentMethodInput! @spread): PaymentMethod @create @inject(context: "user.id", name: "user_id") @guard(with: ["api", "web"])
+    updatePaymentMethod(id: ID!, input: UpdatePaymentMethodInput! @spread): PaymentMethod @update @can(ability: "update", find: "id") @guard(with: ["api", "web"])
+    deletePaymentMethod(id: ID!): PaymentMethod @delete @can(ability: "delete", find: "id") @guard(with: ["api", "web"])
+}

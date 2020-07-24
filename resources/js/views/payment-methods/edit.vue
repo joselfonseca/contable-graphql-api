@@ -1,13 +1,13 @@
 <template>
     <layout>
       <template v-slot:header>
-        <simple-header title="Editar cuenta" button-text="Listado de cuentas" button-link='/accounts' />
+        <simple-header title="Editar medio de pago" button-text="Listado de medios de pago" button-link='/payment-methods' />
       </template>
       <template v-slot:content>
         <div class="w-full flex justify-center">
           <div class="w-2/4">
             <graphql-error-toast v-if="errors" :errors="errors"></graphql-error-toast>
-            <simple-form :fields="form.fields" :button-text="form.buttonText" @submited="updateAccount"></simple-form>
+            <simple-form :fields="form.fields" :button-text="form.buttonText" @submited="updatePaymentMethod"></simple-form>
           </div>
         </div>
       </template>
@@ -15,8 +15,8 @@
 </template>
 
 <script>
-    import GET_ACCOUNT from './../../graphql/accounts/account.graphql';
-    import UPDATE_ACCOUNT from './../../graphql/accounts/update-account.graphql';
+    import GET_PAYMENT_METHOD from './../../graphql/payment-methods/payment-method.graphql';
+    import UPDATE_PAYMENT_METHOD from './../../graphql/payment-methods/update-payment-method.graphql';
 
     export default {
         data() {
@@ -26,38 +26,38 @@
                     {
                       type: 'text',
                       name: 'name',
-                      placeholder: 'Nombre de tu cuenta',
+                      placeholder: 'Nombre de tu medio de pago',
                       required: true,
                       value: null,
-                      label: 'Nombre de tu cuenta',
+                      label: 'Nombre de tu medio de pago',
                       disabled: false
                     }
                   ],
-                  buttonText: 'Actualizar cuenta'
+                  buttonText: 'Actualizar medio de pago'
                 },
                 errors: null,
                 loading: false,
-                account: null
+                paymentMethod: null
             }
         },
         mounted() {
-            this.getAccount();
+            this.getPaymentMethod();
         },
         methods: {
-            async getAccount() {
+            async getPaymentMethod() {
                 this.loading = true;
                 try {
                     const response = await this.$apollo.query({
-                        query: GET_ACCOUNT,
+                        query: GET_PAYMENT_METHOD,
                         variables: {
                             id: this.$route.params.id
                         }
                     });
                     this.loading = false;
-                    this.account = response.data.account;
+                    this.paymentMethod = response.data.paymentMethod;
                     this.form.fields = this.form.fields.map(item => {
-                      if (response.data.account[item.name] !== undefined) {
-                        item.value = response.data.account[item.name];
+                      if (response.data.paymentMethod[item.name] !== undefined) {
+                        item.value = response.data.paymentMethod[item.name];
                       }
                       return item;
                     });
@@ -65,7 +65,7 @@
                     console.log(e);
                 }
             },
-            async updateAccount(fields) {
+            async updatePaymentMethod(fields) {
                 this.loading = true;
                 this.errors = null;
                 const input = {};
@@ -76,19 +76,19 @@
                 });
                 try {
                     const response = await this.$apollo.mutate({
-                        mutation: UPDATE_ACCOUNT,
+                        mutation: UPDATE_PAYMENT_METHOD,
                         variables: {
-                            id: this.account.id,
+                            id: this.paymentMethod.id,
                             input
                         }
                     });
                     this.loading = false;
                     if (response.data) {
-                        this.$toasted.success('Cuenta actualizada satisfactoriamente!', {
+                        this.$toasted.success('Medio de pago actualizada satisfactoriamente!', {
                             position: "top-center",
                             duration : 5000
                         });
-                        return this.$router.push('/accounts');
+                        return this.$router.push('/payment-methods');
                     }
                 } catch (error) {
                     this.loading = false;

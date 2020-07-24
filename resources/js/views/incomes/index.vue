@@ -1,7 +1,7 @@
 <template>
     <layout>
       <template v-slot:header>
-        <simple-header title="Ingresos" button-text="crear ingreso" button-link='/incomes/create' />
+        <simple-header title="Ingresos" button-text="Crear ingreso" button-link='/incomes/create' />
       </template>
       <template v-slot:content>
         <simple-table :headings="headings" :data="incomes" :loading="loading" @editRecord="editRecord" @deleteRecord="deleteRecord"></simple-table>
@@ -22,7 +22,6 @@
                 headings: [
                     'Fecha',
                     'Categoría',
-                    'Cuenta',
                     'Valor'
                 ],
                 incomes: [],
@@ -45,7 +44,6 @@
                         id: item.node.id,
                         date: moment(item.node.date).format('MM/DD/YYYY'),
                         category: item.node.category.name,
-                        account: item.node.account.name,
                         value: new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(item.node.amount),
                     };
                 });

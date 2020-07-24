@@ -1,5 +1,5 @@
-query accounts {
-    accounts(orderBy: {
+query paymentMethods {
+    paymentMethods(orderBy: {
         field: NAME,
         order: ASC
     }) {
